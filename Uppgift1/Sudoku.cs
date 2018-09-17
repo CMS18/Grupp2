@@ -93,8 +93,10 @@ namespace Uppgift1
                     
                 }
 
-                if (iGiveUp)
+                if (iGiveUp) {
+                    Console.WriteLine("Sorry! This sudoku is too hard for me. ");
                     break;
+                }
             }
 
             FormatBoard(newGameBoard);
