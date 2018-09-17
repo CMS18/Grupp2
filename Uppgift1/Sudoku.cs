@@ -51,7 +51,6 @@ namespace Uppgift1
             bool iGiveUp = true;
             for (int row=0; row<newGameBoard.GetLength(0); row++)
             {
-                Console.WriteLine(row);
                 for (int column=0; column<newGameBoard.GetLength(1); column++)
                 {
                     if (row == 0 && column == 0)
@@ -90,10 +89,9 @@ namespace Uppgift1
                             row = -1;  
                         }
                     }
-                    
                 }
-
-                if (iGiveUp && row == newGameBoard.GetLength(0) - 1) {
+                
+                if (iGiveUp && row == newGameBoard.GetLength(0) - 1 && hasEmptyCell) {
                     Console.WriteLine("Sorry! This sudoku is too hard for me. ");
                     break;
                 }
