@@ -13,15 +13,14 @@ namespace Uppgift1
 
         public string BoardAsText { get; set; }
 
-        private void Set(char[,] board)
-            {
-            int atChar = 0;
+        private void FormatBoard(char[,] board)
+        {
+            BoardAsText = "";
             for (int row = 0; row < board.GetLength(0); row++)
             {
                 for (int column = 0; column < board.GetLength(1); column++)
                 {
                     BoardAsText += board[row,column]+ "  ";
-                    atChar++;
                 }
                 BoardAsText += "\n";
             }
@@ -43,30 +42,62 @@ namespace Uppgift1
                     atChar++;
                 }
             }
-            Set(newGameBoard);   
+            FormatBoard(newGameBoard);   
         }
 
         public void Solve()
         {
+            bool hasEmptyCell = false;
+            bool iGiveUp = true;
             for (int row=0; row<newGameBoard.GetLength(0); row++)
             {
                 for (int column=0; column<newGameBoard.GetLength(1); column++)
                 {
+                    if (row == 0 && column == 0)
+                    {
+                        hasEmptyCell = false;
+                        iGiveUp = true;
+                    }
                     if(newGameBoard[row, column] == '0')
                     {
+                        hasEmptyCell = true;
+                        int availableNums = 0;
+                        char correctNum = '0';
                         for (int num=1; num<10; num++)
                         {
-                            char correctNum = (char)(num + 48);
-                            if ((IsNotInRow(correctNum, row)
-                                && IsNotInColumn(correctNum, column)) 
-                                && IsNotInBox(correctNum, row, column))
+                            char checkNum = (char) (num + 48);
+                            if ((IsNotInRow(checkNum, row)
+                                && IsNotInColumn(checkNum, column)) 
+                                && IsNotInBox(checkNum, row, column))
                             {
-                                newGameBoard[row, column] = correctNum;
+                                availableNums++;
+                                correctNum = checkNum;
                             }
                         }
+                        if (availableNums == 1)
+                        {
+                            newGameBoard[row, column] = correctNum;
+                            iGiveUp = false;
+                        }
+ 
                     }
+                    if (row == newGameBoard.GetLength(0)-1 && column == newGameBoard.GetLength(1)-1)
+                    {
+                        if (hasEmptyCell)
+                        {
+                            
+                            row = 0;
+                        }
+                        
+                    }
+                    
                 }
+
+                if (iGiveUp)
+                    break;
             }
+
+            FormatBoard(newGameBoard);
         }
         private bool IsNotInRow(char num, int row)
         {
