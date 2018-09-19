@@ -107,7 +107,7 @@ namespace Uppgift1
                     break;
                 }
             }
-            Console.SetCursorPosition(0, newGameBoard.GetLength(1));
+            Console.SetCursorPosition(0, newGameBoard.GetLength(1)+1);
             //FormatBoard(newGameBoard);
         }
         // Check if number is not in row
