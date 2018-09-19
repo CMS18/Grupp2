@@ -53,16 +53,19 @@ namespace Uppgift1
             {
                 for (int column=0; column<newGameBoard.GetLength(1); column++)
                 {
+                    // If this is the first  cell
                     if (row == 0 && column == 0)
                     {
                         hasEmptyCell = false;
                         iGiveUp = true;
                     }
+                    // If this cell is empty
                     if(newGameBoard[row, column] == '0')
                     {
                         hasEmptyCell = true;
                         int availableNums = 0;
                         char correctNum = '0';
+                        // Check if 1-9 is possible in this cell
                         for (int num=1; num<10; num++)
                         {
                             char checkNum = (char) (num + 48);
@@ -74,6 +77,7 @@ namespace Uppgift1
                                 correctNum = checkNum;
                             }
                         }
+                        // Check if there's only 1 avaible number for this cell
                         if (availableNums == 1)
                         {
                             newGameBoard[row, column] = correctNum;
@@ -82,6 +86,7 @@ namespace Uppgift1
  
                     }
                     
+                    // If this cell is the last and we are not giving up
                     if (!iGiveUp && row == newGameBoard.GetLength(0)-1 && column == newGameBoard.GetLength(1)-1)
                     {
                         if (hasEmptyCell)
@@ -91,6 +96,7 @@ namespace Uppgift1
                     }
                 }
                 
+                // If we are on last row & we have an empty cell but couldn't add a number we stop looping
                 if (iGiveUp && row == newGameBoard.GetLength(0) - 1 && hasEmptyCell) {
                     Console.WriteLine("Sorry! This sudoku is too hard for me. ");
                     break;
@@ -99,6 +105,7 @@ namespace Uppgift1
 
             FormatBoard(newGameBoard);
         }
+        // Check if number is not in row
         private bool IsNotInRow(char num, int row)
         {
             for(int column = 0; column < newGameBoard.GetLength(0); column++)
@@ -107,12 +114,14 @@ namespace Uppgift1
             }
             return true;
         }
+        // Check if number is not in column
         private bool IsNotInColumn(char num, int column)
         {
             for (int row = 0; row < newGameBoard.GetLength(1); row++)
                 if (newGameBoard[row, column] == num) return false;
             return true;
         }
+        // Check if number is not in box
         private bool IsNotInBox(char num, int row, int column)
         {
             int startColumn = getStartFromThisBox(column);
@@ -123,6 +132,7 @@ namespace Uppgift1
                     if (newGameBoard[r, c] == num) return false;
             return true;
         }
+        // Get the start position in a box (Upper left corner)
         private int getStartFromThisBox(int element)
         {
             if (element < 3)
