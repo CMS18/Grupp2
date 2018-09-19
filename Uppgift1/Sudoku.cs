@@ -38,8 +38,7 @@ namespace Uppgift1
             {
                 for (int column = 0; column < newGameBoard.GetLength(1); column++)
                 {
-                    newGameBoard[row, column] = table[atChar];
-                    atChar++;
+                    newGameBoard[row, column] = table[atChar++];
                 }
             }
             FormatBoard(newGameBoard);   
