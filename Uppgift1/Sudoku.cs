@@ -47,8 +47,6 @@ namespace Uppgift1
 
         public void Solve()
         {
-            //Console.BackgroundColor = ConsoleColor.White;
-            //Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
             Console.WriteLine(BoardAsText);
             bool hasEmptyCell = false;
@@ -149,6 +147,7 @@ namespace Uppgift1
             else
                 return 6;
         }
+        // Print a number at correct position with specified color
         private void printWithColor(int row, int column, char num, int sleepTime, ConsoleColor color)
         {
             Console.SetCursorPosition(column * 3, row);
