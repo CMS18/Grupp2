@@ -38,8 +38,7 @@ namespace Uppgift1
             {
                 for (int column = 0; column < newGameBoard.GetLength(1); column++)
                 {
-                    newGameBoard[row, column] = table[atChar];
-                    atChar++;
+                    newGameBoard[row, column] = table[atChar++];
                 }
             }
             FormatBoard(newGameBoard);   
@@ -81,7 +80,6 @@ namespace Uppgift1
                         }
  
                     }
-                    
                     if (!iGiveUp && row == newGameBoard.GetLength(0)-1 && column == newGameBoard.GetLength(1)-1)
                     {
                         if (hasEmptyCell)
@@ -90,7 +88,6 @@ namespace Uppgift1
                         }
                     }
                 }
-                
                 if (iGiveUp && row == newGameBoard.GetLength(0) - 1 && hasEmptyCell) {
                     Console.WriteLine("Sorry! This sudoku is too hard for me. ");
                     break;
