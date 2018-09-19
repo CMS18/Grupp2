@@ -10,7 +10,7 @@ namespace Uppgift1
     {
         static void Main(string[] args)
         {
-            Sudoku game = new Sudoku("300570240572040900004026503703002081420107009006034705630205090040763050085000637"); 
+            Sudoku game = new Sudoku("380570240572040900004026503703002081420107009006034705630205090040763050085000637"); 
             
             Console.WriteLine(game.BoardAsText);
             game.Solve();

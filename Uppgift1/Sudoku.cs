@@ -82,7 +82,7 @@ namespace Uppgift1
  
                     }
                     
-                    if (row == newGameBoard.GetLength(0)-1 && column == newGameBoard.GetLength(1)-1)
+                    if (!iGiveUp && row == newGameBoard.GetLength(0)-1 && column == newGameBoard.GetLength(1)-1)
                     {
                         if (hasEmptyCell)
                         {
