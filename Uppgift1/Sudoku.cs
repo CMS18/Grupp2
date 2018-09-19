@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Uppgift1
@@ -46,6 +47,10 @@ namespace Uppgift1
 
         public void Solve()
         {
+            //Console.BackgroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.Black;
+            Console.Clear();
+            Console.WriteLine(BoardAsText);
             bool hasEmptyCell = false;
             bool iGiveUp = true;
             for (int row=0; row<newGameBoard.GetLength(0); row++)
@@ -61,6 +66,7 @@ namespace Uppgift1
                     // If this cell is empty
                     if(newGameBoard[row, column] == '0')
                     {
+                        printWithColor(row, column, '_', 0, ConsoleColor.Red);
                         hasEmptyCell = true;
                         int availableNums = 0;
                         char correctNum = '0';
@@ -76,13 +82,13 @@ namespace Uppgift1
                                 correctNum = checkNum;
                             }
                         }
-                        // Check if there's only 1 avaible number for this cell
+                        // Check if there's only 1 available number for this cell
                         if (availableNums == 1)
                         {
                             newGameBoard[row, column] = correctNum;
+                            printWithColor(row, column, correctNum, 100, ConsoleColor.Green);                   
                             iGiveUp = false;
                         }
- 
                     }
                     
                     // If this cell is the last and we are not giving up
@@ -96,13 +102,15 @@ namespace Uppgift1
                 }
                 
                 // If we are on last row & we have an empty cell but couldn't add a number we stop looping
-                if (iGiveUp && row == newGameBoard.GetLength(0) - 1 && hasEmptyCell) {
+                if (iGiveUp && row == newGameBoard.GetLength(0) - 1 && hasEmptyCell)
+                {
+                    Console.SetCursorPosition(0, newGameBoard.GetLength(1));
                     Console.WriteLine("Sorry! This sudoku is too hard for me. ");
                     break;
                 }
             }
-
-            FormatBoard(newGameBoard);
+            Console.SetCursorPosition(0, newGameBoard.GetLength(1));
+            //FormatBoard(newGameBoard);
         }
         // Check if number is not in row
         private bool IsNotInRow(char num, int row)
@@ -140,6 +148,13 @@ namespace Uppgift1
                 return 3;
             else
                 return 6;
+        }
+        private void printWithColor(int row, int column, char num, int sleepTime, ConsoleColor color)
+        {
+            Console.SetCursorPosition(column * 3, row);
+            Console.ForegroundColor = color;
+            Console.Write(num);
+            Thread.Sleep(sleepTime);
         }
     }
 }
