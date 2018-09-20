@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class NPC
+    class NPC : Creature
     {
+        public NPC(string description, string name) : base(description, name)
+        {
+        }
     }
 }

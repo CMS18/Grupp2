@@ -8,5 +8,7 @@ namespace Uppgift3
 {
     class World
     {
+        List<Room> rooms = new List<Room>();
+
     }
 }

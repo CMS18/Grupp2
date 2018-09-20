@@ -8,5 +8,12 @@ namespace Uppgift3
 {
     class Room
     {
+        public string title { get; set; }
+        public string description { get; set; }
+        public Room North { get; set; }
+        public Room()
+        {
+
+        }
     }
 }

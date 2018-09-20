@@ -8,5 +8,13 @@ namespace Uppgift3
 {
     class Player : Creature
     {
+        private string gender; 
+
+        public Player(string description, string name, string _gender) : base(description, name)
+        {
+            gender = _gender;
+        }
+       
+
     }
 }

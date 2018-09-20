@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Armor
+    class Armor : Item
     {
     }
 }
