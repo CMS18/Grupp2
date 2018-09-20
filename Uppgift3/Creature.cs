@@ -16,12 +16,15 @@ namespace Uppgift3
             Name = name;
             Description = description;
         }
+
         public void AddItem(Item item)
         {
 
         }
+
         public void RemoveItem(Item item)
         {
 
         }
     }
+}
