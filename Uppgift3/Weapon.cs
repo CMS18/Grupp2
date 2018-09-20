@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class AdventureGame
+    class Weapon
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }
