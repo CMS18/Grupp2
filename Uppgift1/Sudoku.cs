@@ -85,8 +85,9 @@ namespace Uppgift1
                     }
 
                     // If this cell is the last and we are not giving up
-                    if (!iGiveUp && row == newGameBoard.GetLength(0) - 1 && column == newGameBoard.GetLength(1) - 1)
-                        if (hasEmptyCell) row = -1;
+                    if (!iGiveUp && row == newGameBoard.GetLength(0) - 1 && column == newGameBoard.GetLength(1) - 1 
+                        && hasEmptyCell)
+                        row = -1;
                 }
 
                 // If we are on last row & we have an empty cell but couldn't add a number we stop looping
@@ -99,7 +100,6 @@ namespace Uppgift1
             }
 
             Console.SetCursorPosition(0, newGameBoard.GetLength(1) + 1);
-            //FormatBoard(newGameBoard);
         }
 
         // Check if number is not in row
