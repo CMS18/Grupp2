@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uppgift2
+namespace Uppgift3
 {
-    class Program
+    class AdventureGame
     {
         static void Main(string[] args)
         {

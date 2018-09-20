@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift1
 {
-    class Program
+    class Sudoku1
     {
         static void Main(string[] args)
         {
