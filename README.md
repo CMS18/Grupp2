@@ -1,2 +1,2 @@
-# Grupp2-Sudoku
+# Grupp2
 Team awesomeness
