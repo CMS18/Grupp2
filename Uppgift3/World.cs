@@ -9,13 +9,14 @@ namespace Uppgift3
     class World
     {
         //List<Room> rooms = new List<Room>();
+        public World()
+        {
+            Room library = new Room("Title", "Description");
 
-        Room library = new Room("Title", "Description");
+            Room hall = new Room("Title", "Description");
 
-        Room hall = new Room("Title", "Description");
+            library.East = hall;
 
-        
-        
-
+        }
     }
 }

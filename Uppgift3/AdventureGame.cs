@@ -10,6 +10,12 @@ namespace Uppgift3
     {
         static void Main(string[] args)
         {
+
+            Room library = new Room("Title", "Description");
+
+            Room hall = new Room("Title", "Description");
+
+            
             
         }
     }
