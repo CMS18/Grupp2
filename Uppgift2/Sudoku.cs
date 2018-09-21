@@ -11,8 +11,6 @@ namespace Uppgift2
     {
         private char[,] board = new char[9, 9];
         public string BoardAsText { get; set; }
-        int recursiveCount = 0;
-
         private void FormatBoard(char[,] board)
         {
             BoardAsText = "";
