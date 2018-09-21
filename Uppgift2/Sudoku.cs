@@ -11,6 +11,7 @@ namespace Uppgift2
     {
         private char[,] board = new char[9, 9];
         public string BoardAsText { get; set; }
+        int recursiveCount = 0;
 
         private void FormatBoard(char[,] board)
         {
@@ -46,22 +47,23 @@ namespace Uppgift2
         {
             var hasEmptyCell = false;
             var guess = false;
-            var hasNoUnique = true;
+            var hasUnique = false;
             for (var row = 0; row < currentBoard.GetLength(0); row++)
             {
                 for (var column = 0; column < currentBoard.GetLength(1); column++)
                 {
+                    
                     // If this is the first  cell
                     if (row == 0 && column == 0)
                     {
                         hasEmptyCell = false;
-                        hasNoUnique = true;
+                        hasUnique = false;
                     }
 
                     // If this cell is empty
                     if (currentBoard[row, column] == '0')
                     {
-                        PrintWithColor(row, column, '_', 0, ConsoleColor.DarkRed);
+                        PrintWithColor(row, column, '_', 10, ConsoleColor.DarkRed);
                         hasEmptyCell = true;
                         var availableNums = 0;
                         var correctNum = '0';
@@ -78,55 +80,52 @@ namespace Uppgift2
                                 correctNum = checkNum;
                                 if (guess)
                                 {
-                                    PrintWithColor(row, column, correctNum, 0, ConsoleColor.Magenta);
+                                    PrintWithColor(row, column, correctNum, 100, ConsoleColor.Magenta);
                                     currentBoard[row, column] = correctNum;
+                                    recursiveCount++;
+
                                     char[,] temp = Solve(currentBoard);
+
+                                    recursiveCount--;
                                     currentBoard[row, column] = '0';
                                     if (temp != null)
                                     {
                                         currentBoard = temp;
                                     }
+                                    Console.SetCursorPosition(0, board.GetLength(1) + 1);
+
+                                    FormatBoard(currentBoard);
+                                    Console.WriteLine(BoardAsText +"\n" + recursiveCount);
                                 }
                             }
                         }
-                        guess = false;
-
                         // Check if there's only 1 available number for this cell
                         if (availableNums == 1)
                         {
-                            hasNoUnique = false;
+                            hasUnique = true;
+                            guess = false;
                             currentBoard[row, column] = correctNum;
-                            PrintWithColor(row, column, correctNum, 0, ConsoleColor.DarkGreen);
+                            PrintWithColor(row, column, correctNum, 100, ConsoleColor.DarkGreen);
                         }
-                        else
+                        else if (availableNums > 1 && !hasUnique)
                         {
                             guess = true;
                         }
                     }
-
-                    // If this cell is the last and we found 1 unique number
-                    if (!hasNoUnique && row == currentBoard.GetLength(0) - 1 && column == currentBoard.GetLength(1) - 1
-                        && hasEmptyCell)
-                        row = -1;
-                    
+                    // If we found a solution
                     if (row == currentBoard.GetLength(0) - 1 && column == currentBoard.GetLength(1) - 1 && !hasEmptyCell) return currentBoard;
 
-                }
-                if (hasNoUnique && !guess && row == currentBoard.GetLength(0))
-                {
-                    Console.SetCursorPosition(25, 25);
-                    Console.WriteLine("HELP");
-                    return null;
-                }
-                //if (row == currentBoard.GetLength(0) - 1 && iGiveUp && guess && hasEmptyCell)
-                //{
-                //    Console.SetCursorPosition(25, 25);
-                //    Console.WriteLine("FAIL?");
-                //    return null;
+                    // If this cell is the last and we found 1 unique number
+                    if (row == currentBoard.GetLength(0) - 1 && column == currentBoard.GetLength(1) - 1
+                        && hasEmptyCell)
+                    {
+                        row = -1;
+                        if (!guess) return null;
+                    }
 
-                //}
-                // Console.WriteLine(iGiveUp + " " + row + " " + hasEmptyCell); 
+                    // TODO: RETURN FAILED
 
+                }
             }
             Console.SetCursorPosition(0, board.GetLength(1) + 1);
 
