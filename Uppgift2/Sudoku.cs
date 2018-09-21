@@ -63,7 +63,7 @@ namespace Uppgift2
                     // If this cell is empty
                     if (currentBoard[row, column] == '0')
                     {
-                        PrintWithColor(row, column, '_', 10, ConsoleColor.DarkRed);
+                        PrintWithColor(row, column, '_', 50, ConsoleColor.DarkRed);
                         hasEmptyCell = true;
                         var availableNums = 0;
                         var correctNum = '0';
@@ -82,20 +82,18 @@ namespace Uppgift2
                                 {
                                     PrintWithColor(row, column, correctNum, 100, ConsoleColor.Magenta);
                                     currentBoard[row, column] = correctNum;
-                                    recursiveCount++;
 
                                     char[,] temp = Solve(currentBoard);
 
-                                    recursiveCount--;
                                     currentBoard[row, column] = '0';
                                     if (temp != null)
                                     {
                                         currentBoard = temp;
                                     }
-                                    Console.SetCursorPosition(0, board.GetLength(1) + 1);
+                                    Console.SetCursorPosition(0, board.GetLength(1) +1);
 
                                     FormatBoard(currentBoard);
-                                    Console.WriteLine(BoardAsText +"\n" + recursiveCount);
+                                    Console.WriteLine(BoardAsText +"\n");
                                 }
                             }
                         }
@@ -120,7 +118,7 @@ namespace Uppgift2
                         && hasEmptyCell)
                     {
                         row = -1;
-                        if (!guess) return null;
+                        if (guess == false) return null;
                     }
 
                     // TODO: RETURN FAILED
