@@ -10,6 +10,9 @@ namespace Uppgift2
     {
         static void Main(string[] args)
         {
+            Sudoku game = new Sudoku("000000000000000000000000000000000000000010000000000000000000000000000000000000000");
+            game.Solve();
+            
         }
     }
 }
