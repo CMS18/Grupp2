@@ -33,7 +33,7 @@ namespace Uppgift2
         {
             var atChar = 0;
             for (var row = 0; row < board.GetLength(0); row++)
-            for (var column = 0; column < board.GetLength(1); column++) board[row, column] = table[atChar++];
+                for (var column = 0; column < board.GetLength(1); column++) board[row, column] = table[atChar++];
 
             FormatBoard(board);
         }
@@ -50,7 +50,7 @@ namespace Uppgift2
             {
                 for (var column = 0; column < currentBoard.GetLength(1); column++)
                 {
-                    
+
                     // If this is the first  cell
                     if (row == 0 && column == 0)
                     {
@@ -69,7 +69,7 @@ namespace Uppgift2
                         // Check if 1-9 is possible in this cell
                         for (var num = 1; num < 10; num++)
                         {
-                            var checkNum = (char) (num + 48);
+                            var checkNum = (char)(num + 48);
                             if (IsNotInRow(checkNum, row)
                                 && IsNotInColumn(checkNum, column)
                                 && IsNotInBox(checkNum, row, column))
@@ -88,10 +88,10 @@ namespace Uppgift2
                                     {
                                         currentBoard = temp;
                                     }
-                                    Console.SetCursorPosition(0, board.GetLength(1) +1);
+                                    Console.SetCursorPosition(0, board.GetLength(1) + 1);
 
                                     FormatBoard(currentBoard);
-                                    Console.WriteLine(BoardAsText +"\n");
+                                    Console.WriteLine(BoardAsText + "\n");
                                 }
                             }
                         }
@@ -155,9 +155,9 @@ namespace Uppgift2
             var startRow = GetStartFromThisBox(row);
 
             for (var r = startRow; r < startRow + 3; r++)
-            for (var c = startColumn; c < startColumn + 3; c++)
-                if (board[r, c] == num)
-                    return false;
+                for (var c = startColumn; c < startColumn + 3; c++)
+                    if (board[r, c] == num)
+                        return false;
             return true;
         }
 
