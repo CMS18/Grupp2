@@ -9,6 +9,7 @@ namespace Uppgift2
     class Sudoku2
     {
         private const string easy1 = "003020600900305001001806400008102900700000008006708200002609500800203009005010300";
+        private const string easy1_modified = "003020600900300001001806400008102900700000008006008200002609500800200009005010300";
         private const string easy2 = "619030040270061008000047621486302079000014580031009060005720806320106057160400030";
         private const string medium1 = "037060000205000800006908000000600024001503600650009000000302700009000402000050360";
         private const string diabolic1 = "000000000000003085001020000000507000004000100090000000500000073002010000000040009";
@@ -27,7 +28,7 @@ namespace Uppgift2
             bool debug = false;
             if (read == "Y" || read == "YES") debug = true;
 
-            Sudoku game = new Sudoku(medium1, debug);
+            Sudoku game = new Sudoku(easy1_modified, debug);
             game.Solve();
         }
     }
