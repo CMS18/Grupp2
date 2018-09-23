@@ -12,7 +12,6 @@ namespace Uppgift2
         private readonly char[,] board = new char[9, 9];
         public string BoardAsText { get; set; }
         private bool debug;
-        int recursiveCount = 0;
         int tries = 0;
 
         private void FormatBoard(char[,] board)
@@ -93,7 +92,6 @@ namespace Uppgift2
                             foreach (char num in availableNums) {
                                 if (debug) PrintWithColor(row, column, num, 0, ConsoleColor.Red);
                                 currentBoard[row, column] = num;
-                                recursiveCount++;
                                 tries++;
                                 // Try the number in a new recursion of a cloned board
                                 char[,] testBoard = Solve(currentBoard.Clone() as char[,], currentCell); 
@@ -104,7 +102,6 @@ namespace Uppgift2
                                     hasEmptyCell = false;
                                     break;
                                 }
-                                recursiveCount--;
                                 loopsWithoutProgress = 0;
                             }
                             cellGuessed = currentCell;
