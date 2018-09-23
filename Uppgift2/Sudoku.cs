@@ -12,7 +12,7 @@ namespace Uppgift2
         private readonly char[,] board = new char[9, 9];
         public string BoardAsText { get; set; }
         private bool debug;
-        int recCount = 0;
+        int recursiveCount = 0;
         int tries = 0;
 
         private void FormatBoard(char[,] board)
@@ -93,7 +93,7 @@ namespace Uppgift2
                             foreach (char num in availableNums) {
                                 if (debug) PrintWithColor(row, column, num, 0, ConsoleColor.Red);
                                 currentBoard[row, column] = num;
-                                recCount++;
+                                recursiveCount++;
                                 tries++;
                                 // Try the number in a new recursion of a cloned board
                                 char[,] testBoard = Solve(currentBoard.Clone() as char[,], currentCell); 
@@ -102,12 +102,9 @@ namespace Uppgift2
                                 {
                                     currentBoard = testBoard;
                                     hasEmptyCell = false;
-                                    Console.SetCursorPosition(0, 15);
-                                    FormatBoard(currentBoard);
-                                    Console.WriteLine("FOUND IT! " + recCount +"\n"+ BoardAsText);
                                     break;
                                 }
-                                recCount--;
+                                recursiveCount--;
                                 loopsWithoutProgress = 0;
                             }
                             cellGuessed = currentCell;
@@ -121,8 +118,6 @@ namespace Uppgift2
                             iGiveUp = false;
                             guess = false;
                             loopsWithoutProgress = 0;
-                            //rowGuessed = -1;
-                            //columnGuessed = -1;
                         }
                     }
                     currentCell++;
@@ -143,8 +138,10 @@ namespace Uppgift2
                     row = -1;
                 }
             }
-            
-            if (currentBoard != null) { Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(currentBoard); Console.WriteLine("Solution:\n"+BoardAsText); }
+            if (currentBoard != null) {
+                Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(currentBoard);
+                Console.WriteLine("After "+ tries +" guesses I found this solution:\n"+BoardAsText);
+            }
             return currentBoard;
         }
 
