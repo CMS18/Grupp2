@@ -14,132 +14,142 @@ namespace Uppgift2
         private bool debug;
         int tries = 0;
 
-        private void FormatBoard(char[,] board)
-        {
-            BoardAsText = "";
-            for (var row = 0; row < board.GetLength(0); row++)
-            {
-                for (var column = 0; column < board.GetLength(1); column++) BoardAsText += board[row, column] + "  ";
-
-                BoardAsText += "\n";
-            }
-        }
-
         public Sudoku(string boardAsText, bool debug)
         {
             this.debug = debug;
             CreateBoard(boardAsText);
         }
+        
+        private void FormatBoard(char[,] board)
+        {
+            BoardAsText = "";
+            for (var row = 0; row < board.GetLength(0); row++)
+            {
+                for (var column = 0; column < board.GetLength(1); column++)
+                    BoardAsText += board[row, column] + "  ";
+                BoardAsText += "\n";
+            }
+        }
 
         public void CreateBoard(string table)
         {
-            var atChar = 0;
             for (var row = 0; row < board.GetLength(0); row++)
-                for (var column = 0; column < board.GetLength(1); column++) board[row, column] = table[atChar++];
-
+                for (var column = 0; column < board.GetLength(1); column++)
+                {
+                    if(int.TryParse(table[row*9+column].ToString(), out int trash))
+                    {
+                        board[row, column] = table[row * 9 + column];
+                    }
+                    else
+                    {
+                        board[row, column] = '0';
+                    }
+                }
             FormatBoard(board);
         }
+
         public void Solve()
         {
             Console.Clear();
             Console.WriteLine(BoardAsText);
-            Solve(board, -1);
+            char[,] b = Solve(board);
+            if (b != null)
+            {
+                Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(b);
+                Console.WriteLine("After " + tries + " guesses I found this solution:\n" + BoardAsText);
+            }
+            else
+            {
+                Console.SetCursorPosition(0, board.GetLength(1) +3);
+                Console.WriteLine("Not fair! This one is unsolvable!");
+            }
         }
-        // Set cellGuessed to -1 if no previous guesses have been made
-        public char[,] Solve(char[,] currentBoard, int cellGuessed)
+
+        public char[,] Solve(char[,] currentBoard)
         {
             var hasEmptyCell = false;
             var iGiveUp = true;
             var guess = false;
-            var loopsWithoutProgress = 0;
-            var currentCell = 0;
+            var bestCell = -1;
 
-            for (var row = 0; row < currentBoard.GetLength(0); row++)
-            {
-                for (var column = 0; column < currentBoard.GetLength(1); column++)
+            do {
+                hasEmptyCell = false;
+                iGiveUp = true;
+                for (var row = 0; row < currentBoard.GetLength(0); row++)
                 {
-                    // If this is the first  cell
-                    if (row == 0 && column == 0)
+                    for (var column = 0; column < currentBoard.GetLength(1); column++)
                     {
-                        hasEmptyCell = false;
-                        iGiveUp = true;
-                        loopsWithoutProgress++;
-                        currentCell = 0;
-                    }
-                    // If this cell is empty
-                    if (currentBoard[row, column] == '0')
-                    {
-                        if(debug) PrintWithColor(row, column, '_', 0, ConsoleColor.DarkRed);
-                        hasEmptyCell = true;
-                        var correctNum = '0';
-
-                        // Check if 1-9 is possible in this cell
-                        List<char> availableNums = new List<char>(); 
-                        for (var num = 1; num < 10; num++)
+                        // If this cell is empty
+                        if (currentBoard[row, column] == '0')
                         {
-                            var checkNum = (char)(num + 48);
-                            if (IsNotInRow(currentBoard, checkNum, row)
-                                && IsNotInColumn(currentBoard, checkNum, column)
-                                && IsNotInBox(currentBoard, checkNum, row, column))
+                            if (debug) PrintWithColor(row, column, '_', 0, ConsoleColor.DarkRed);
+                            hasEmptyCell = true;
+                            // Check if 1-9 is possible in this cell
+                            List<char> availableNums = GetAvailableNums(currentBoard, row, column);
+                            // If we are guessing find the best cell to start guessing on
+                            if (guess && availableNums.Count > 1)
                             {
-                                correctNum = checkNum;
-                                availableNums.Add(correctNum);
+                                if(bestCell < 0) bestCell = row * 9 + column;
+                                else if (availableNums.Count <= GetAvailableNums(currentBoard, bestCell / 9, bestCell % 9).Count)
+                                    bestCell = row * 9 + column;
+                            }
+                            if (availableNums.Count == 0) return null;
+                            else if (availableNums.Count == 1)
+                            {
+                                currentBoard[row, column] = availableNums.First();
+                                if (debug) PrintWithColor(row, column, currentBoard[row, column], 0, ConsoleColor.DarkGreen);
+                                iGiveUp = false;
+                                guess = false;
                             }
                         }
-                        // If we are doing guesses on a new cell
-                        if (guess && currentCell > cellGuessed && availableNums.Count > 1)
+                    }
+                    // If we are in the end of this board
+                    if (row == currentBoard.GetLength(0) - 1)
+                    {
+                        // If no unique numbers were found we have to start guessing
+                        if (iGiveUp) guess = true;
+                        // If we have found the best cell to start guessing on
+                        if (iGiveUp && bestCell >= 0)
                         {
-                            foreach (char num in availableNums) {
-                                if (debug) PrintWithColor(row, column, num, 0, ConsoleColor.Red);
-                                currentBoard[row, column] = num;
+                            int r = bestCell / 9;
+                            int c = bestCell % 9;
+                            foreach (char num in GetAvailableNums(currentBoard, r, c))
+                            {
+                                if (debug) PrintWithColor(r, c, num, 0, ConsoleColor.Red);
+                                char[,] testBoard = currentBoard.Clone() as char[,];
+                                testBoard[r, c] = num;
                                 tries++;
                                 // Try the number in a new recursion of a cloned board
-                                char[,] testBoard = Solve(currentBoard.Clone() as char[,], currentCell); 
-                                currentBoard[row, column] = '0';
+                                testBoard = Solve(testBoard);
                                 if (testBoard != null)
                                 {
-                                    currentBoard = testBoard;
-                                    hasEmptyCell = false;
-                                    break;
+                                    return testBoard;
                                 }
-                                loopsWithoutProgress = 0;
                             }
-                            cellGuessed = currentCell;
-                        }
-
-                        // Check if there's only 1 available number for this cell
-                        else if (availableNums.Count == 1)
-                        {
-                            currentBoard[row, column] = correctNum;
-                            if (debug) PrintWithColor(row, column, correctNum, 0, ConsoleColor.DarkGreen);
-                            iGiveUp = false;
-                            guess = false;
-                            loopsWithoutProgress = 0;
+                            Console.SetCursorPosition(0, board.GetLength(0) + 2);
+                            return null;
                         }
                     }
-                    currentCell++;
-                }                        
-                
-                // If we looped without any new guesses or unique numbers
-                if (loopsWithoutProgress > 3)
-                {
-                    currentBoard = null;
-                    break;
                 }
-                // If we are on last row but couldn't add a number we guess
-                if (row == currentBoard.GetLength(0) - 1)
-                {
-                    // If we found a solution
-                    if (!hasEmptyCell) break;
-                    if (iGiveUp) guess = true;
-                    row = -1;
-                }
-            }
-            if (currentBoard != null) {
-                Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(currentBoard);
-                Console.WriteLine("After "+ tries +" guesses I found this solution:\n"+BoardAsText);
-            }
+            }while(hasEmptyCell);
             return currentBoard;
+        }
+
+        // Returns available numbers for this cell
+        private List<char> GetAvailableNums(char[,] currentBoard, int row, int column)
+        {
+            List<char> availableNums = new List<char>();
+            for (var num = 1; num < 10; num++)
+            {
+                var checkNum = (char)(num + 48);
+                if (IsNotInRow(currentBoard, checkNum, row)
+                    && IsNotInColumn(currentBoard, checkNum, column)
+                    && IsNotInBox(currentBoard, checkNum, row, column))
+                {
+                    availableNums.Add(checkNum);
+                }
+            }
+            return availableNums;
         }
 
         // Check if number is not in row
@@ -150,7 +160,7 @@ namespace Uppgift2
 
             return true;
         }
-
+        
         // Check if number is not in column
         private bool IsNotInColumn(char[,] board, char num, int column)
         {
