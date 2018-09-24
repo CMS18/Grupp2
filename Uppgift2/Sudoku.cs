@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -50,18 +51,21 @@ namespace Uppgift2
 
         public void Solve()
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             Console.Clear();
             Console.WriteLine(BoardAsText);
             char[,] b = Solve(board);
+            sw.Stop();
             if (b != null)
             {
                 Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(b);
-                Console.WriteLine("After " + tries + " guesses I found this solution:\n" + BoardAsText);
+                Console.WriteLine("After " + tries + " guesses I found this solution:\n\n" + BoardAsText + "\nIt only took me {0:%s\\.fff} seconds to find the answer. I'm so smart", sw.Elapsed);
             }
             else
             {
                 Console.SetCursorPosition(0, board.GetLength(1) +3);
-                Console.WriteLine("Not fair! This one is unsolvable!");
+                Console.WriteLine("Not fair! This one is unsolvable! \nIt took me {0:%s\\.fff} seconds to figure that out, because I'm smart.", sw.Elapsed);
             }
         }
 
@@ -115,7 +119,7 @@ namespace Uppgift2
                             int c = bestCell % 9;
                             foreach (char num in GetAvailableNums(currentBoard, r, c))
                             {
-                                if (debug) PrintWithColor(r, c, num, 0, ConsoleColor.Red);
+                                if (debug) PrintWithColor(r, c, num, 0, ConsoleColor.DarkRed);
                                 char[,] testBoard = currentBoard.Clone() as char[,];
                                 testBoard[r, c] = num;
                                 tries++;
