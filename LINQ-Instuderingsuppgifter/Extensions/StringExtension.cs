@@ -28,6 +28,10 @@ namespace LINQ_Instuderingsuppgifter.Extensions
             
             return text;
         }
+        public static DateTime GetLastDateOfMonth(this DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
+        }
         
     }
 }

@@ -12,10 +12,13 @@ namespace LINQ_Instuderingsuppgifter
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter input: ");
-            var text = Console.ReadLine().UppercaseWordFirstLetter();
+            //Console.Write("Enter input: ");
+            //var text = Console.ReadLine().UppercaseWordFirstLetter();
 
-            Console.WriteLine(text);
+            //Console.WriteLine(text);
+
+            DateTime date = new DateTime(2018,2,24);
+            Console.WriteLine(date.GetLastDateOfMonth());
         }
     }
 }
