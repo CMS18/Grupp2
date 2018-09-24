@@ -14,7 +14,7 @@ namespace Uppgift2
         private const string medium1 = "037060000205000800006908000000600024001503600650009000000302700009000402000050360";
         private const string diabolic1 = "000000000000003085001020000000507000004000100090000000500000073002010000000040009";
         private const string diabolic2 = "900040000000010200370000005000000090001000400000705000000020100580300000000000000";
-        private const string zen = "00000000000000.00000000000000000000äå00000000000000000000000000000000000000000000";
+        private const string zen = "000000000000000000000000000000000000000010000000000000000000000000000000000000000";
         private const string unsolvable1 = "..9.287..8.6..4..5..3.....46.........2.71345.........23.....5..9..4..8.7..125.3..";
         private const string unsolvable2 = ".9.3....1....8..46......8..4.5.6..3...32756...6..1.9.4..1......58..2....2....7.6.";
         private const string unsolvable3 = "....41....6.....2...2......32.6.........5..417.......2......23..48......5.1..2...";
@@ -28,7 +28,7 @@ namespace Uppgift2
             bool debug = false;
             if (read == "Y" || read == "YES") debug = true;
 
-            Sudoku game = new Sudoku(diabolic1, debug);
+            Sudoku game = new Sudoku(zen, debug);
             game.Solve();
         }
     }
