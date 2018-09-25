@@ -9,7 +9,6 @@ namespace Uppgift3
     public class World
     {
         List<Room> rooms = new List<Room>();
-        Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
         public Room CurrentRoom { get; set; }
         public World()
         {
@@ -39,22 +38,37 @@ namespace Uppgift3
             hallway.AddItem(new Item(1, "Chair", "This is an ugly chair.", 5));
 
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
-            Armor armor = new Armor(12, "Hat","It's a fedora m'lady! *tips fedora*", 5, 1);
+            Armor armor = new Armor(12, "Hat", "It's a fedora m'lady! *tips fedora*", 5, 1);
+            Npc glassUnicorn = new Npc(10, "Buttstallion", "It's a glass unicorn!", true);
             
             hallway.AddItem(makeToLegendary(armor));
             hallway.AddItem(makeToLegendary(axe));
+            //hallway.AddCreature(SpawnBoss(glassUnicorn));
 
-            CurrentRoom = forest;
+
+            CurrentRoom = hallway;
         }
         private Item makeToLegendary(Item item)
         {
-            int randomLegendary = new Random().Next(1, 5);
+            int randomLegendary = new Random().Next(1, 5); 
             if (randomLegendary == 1)
             {
                 item.Legendary = true;
                 item.Name = "Legendary " + item.Name;
             }
             return item;
+        }
+
+        private Creature SpawnBoss(Creature boss)
+        {
+            int randomBoss = new Random().Next(1, 5);
+            if (randomBoss == 1)
+            {
+                boss.Boss = true;
+                boss.Name = "Elite" + boss.Name;
+            }
+
+            return boss;
         }
     }
 }

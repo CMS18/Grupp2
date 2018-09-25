@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Player : Creature
+    public class Player : Creature
     {
-        private string Gender; 
+        public string Gender { get; set; }
 
-        public Player(string description, string name, string gender, int id) : base(description, name, id)
+        public Player(int id, string name, string description, string gender) : base(id, name, description)
         {
             Gender = gender;
         }

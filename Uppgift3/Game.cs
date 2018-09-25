@@ -22,10 +22,9 @@ namespace Uppgift3
             bool playing = true;
 
             //THIS IS JUST SOME TESTING
-            Console.WriteLine(currentRoom.Title);
             //USE THIS TO MOVE FORWARD
-            currentRoom = currentRoom.North;
             Console.WriteLine(currentRoom.Title);
+            Console.WriteLine(currentRoom.Description);
             //END TESTING
             do
             {

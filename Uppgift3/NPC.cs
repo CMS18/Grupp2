@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class NPC : Creature
+    public class Npc : Creature
     {
-        public NPC(string description, string name, int id) : base(description, name, id)
+        public bool Hostile { get; set; }
+
+        public Npc(int id, string name, string description, bool hostile) : base(id, name, description)
         {
+            Hostile = hostile;
         }
     }
 }

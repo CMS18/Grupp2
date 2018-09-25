@@ -15,7 +15,7 @@ namespace Uppgift3
                 _description = defaulDescription;
                 foreach (Item item in items)
                 {
-                    _description += " There is a " + item.Name + " in here. ";
+                    _description += "There is a " + item.Name + " in here. ";
                 }
                 return _description;
             }

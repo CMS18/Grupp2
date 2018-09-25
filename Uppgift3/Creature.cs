@@ -11,22 +11,25 @@ namespace Uppgift3
         public int ID { get; set; } // easier to randomize later on
         public string Name { get; set; }
         public string Description { get; set; }
+        public bool Boss { get; set; }
 
-        public Creature(string description, string name, int id)
+        public Creature(int id, string name, string description)
         {
             ID = id;
             Name = name;
             Description = description;
         }
 
-        public void AddItem(Item item)
-        {
+        //TODO: Fix inventory for Creature
 
-        }
+        //public void AddItem(Item item)
+        //{
 
-        public void RemoveItem(Item item)
-        {
+        //}
 
-        }
+        //public void RemoveItem(Item item)
+        //{
+
+        //}
     }
 }
