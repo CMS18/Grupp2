@@ -8,7 +8,7 @@ namespace Uppgift3
 {
     class Key : Item
     {
-        public Key(int id, string name, string description) : base(id, name, description)
+        public Key(int id, string name, string description, int weight) : base(id, name, description, weight)
         {
 
         }

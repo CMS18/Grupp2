@@ -8,9 +8,29 @@ namespace Uppgift3
 {
     class Room
     {
-        //Properties that's needed
+        //Properties that are needed
         public string Title { get; set; }
-        public string Description { get; set; }
+        public string Description {
+            get {
+                _description = defaulDescription;
+                foreach (Item item in items)
+                {
+                    _description += " There is a " + item.Name + " in here. ";
+                }
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
+        }
+
+        private string defaulDescription;
+        private string _description;
+
+        private List<Item> items;
+        private List<Challenge> challenges;
+        private List<Creature> creatures;
 
         //Possible exits 
         public Room North { get; set; }
@@ -21,7 +41,35 @@ namespace Uppgift3
         public Room(string title, string description)
         {
             Title = title;
-            Description = description;
+            defaulDescription = description;
+            items = new List<Item>();
+            challenges = new List<Challenge>();
+        }
+
+        // ADDERS AND GETTERS
+        public void AddItem(Item item)
+        {
+            items.Add(item);
+        }
+        public List<Item> GetItems()
+        {
+            return items;
+        }
+        public void AddChallenge(Challenge challenge)
+        {
+            challenges.Add(challenge);
+        }
+        public List<Challenge> GetChallenges()
+        {
+            return challenges;
+        }
+        public void AddCreature(Creature creature)
+        {
+            creatures.Add(creature);
+        }
+        public List<Creature> GetCreatures()
+        {
+            return creatures;
         }
     }
 }

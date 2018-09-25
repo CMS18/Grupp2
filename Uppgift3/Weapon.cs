@@ -8,15 +8,11 @@ namespace Uppgift3
 {
     public class Weapon : Item
     {     
-        private int Attack { get; set; }
-        public string Legendary { get; set; }
+        public int Attack { get; set; }
 
-        public Weapon (int id, string name, string description, int attack) : base (id, name, description)
+        public Weapon (int id, string name, string description, int attack, int weight) : base (id, name, description, weight)
         {
             Attack = attack;
         }
-
-        
     }
-
 }

@@ -11,12 +11,15 @@ namespace Uppgift3
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Weight { get; set; }
+        public bool Legendary { get; set; }
 
-        public Item (int id, string name, string description)
+        public Item (int id, string name, string description, int weight)
         {
             ID = id;
-            Name = Name;
+            Name = name;
             Description = description;
+            Weight = weight;
         }
 
         

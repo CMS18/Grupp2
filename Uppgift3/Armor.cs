@@ -10,7 +10,7 @@ namespace Uppgift3
     {
         private int Defense { get; set; }
 
-        public Armor(int id, string name, string description, int defense) : base(id, name, description)
+        public Armor(int id, string name, string description, int defense, int weight) : base(id, name, description, weight)
         {
             Defense = defense;
         }

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Game
+    public class Game : World
     {
-        
+        public Game() 
+        {
+
+        }
     }
 }
