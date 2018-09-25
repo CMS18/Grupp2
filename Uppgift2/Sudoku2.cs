@@ -28,7 +28,7 @@ namespace Uppgift2
             bool debug = false;
             if (read == "Y" || read == "YES") debug = true;
 
-            Sudoku game = new Sudoku(unsolvable1, debug);
+            Sudoku game = new Sudoku(diabolic1, debug);
             game.Solve();
         }
     }
