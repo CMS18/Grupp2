@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Creature
+    public class Creature
     {
         public int ID { get; set; } // easier to randomize later on
         public string Name { get; set; }

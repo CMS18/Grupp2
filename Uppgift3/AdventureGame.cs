@@ -10,7 +10,7 @@ namespace Uppgift3
     {
         static void Main(string[] args)
         {
-            new Game();
+            new Game().Play();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Room
+    public class Room
     {
         //Properties that are needed
         public string Title { get; set; }

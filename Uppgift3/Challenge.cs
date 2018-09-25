@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Challenge
+    public class Challenge
     {
     }
 }

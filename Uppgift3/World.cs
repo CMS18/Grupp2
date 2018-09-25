@@ -8,13 +8,13 @@ namespace Uppgift3
 {
     public class World
     {
-        //List<Room> rooms = new List<Room>();
+        List<Room> rooms = new List<Room>();
         Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
-
+        public Room CurrentRoom { get; set; }
         public World()
         {
             // Rooms to use
-            Room forest = new Room("Dark Forest", "There is an AXE on the floor. A TREE is in the way."); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
+            Room forest = new Room("Dark Forest", "This is a dark forest. "); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
             Room garden = new Room("Garden", "Description");
             Room garage = new Room("Garage", "Description");
             Room library = new Room("Library", "Description");
@@ -29,21 +29,22 @@ namespace Uppgift3
             // Exits
             library.East = hallway; //Move to hallway
             forest.North = garden; //Move to garden
-
-            library.AddItem(new Item(1, "Table", "This is a table made of cheap plastic.", 5));
-            library.AddItem(new Item(1, "Chair", "This is an ugly chair.", 5));
-
-            Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
-            Armor armor = new Armor(12, "Hat","It's a fedora m'lady! *tips fedora*", 5, 1);
             hallway.West = library; //Move to library
             hallway.South = garden; //Move to gareden
-            forest.North = garden; //Move to garden
             garden.South = forest; //Move to forest
             garden.North = hallway; //move to hallway
 
-            library.AddItem(makeToLegendary(armor));
-            library.AddItem(makeToLegendary(axe));
-            Console.WriteLine(library.Description);
+
+            hallway.AddItem(new Item(1, "Table", "This is a table made of cheap plastic.", 5));
+            hallway.AddItem(new Item(1, "Chair", "This is an ugly chair.", 5));
+
+            Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
+            Armor armor = new Armor(12, "Hat","It's a fedora m'lady! *tips fedora*", 5, 1);
+            
+            hallway.AddItem(makeToLegendary(armor));
+            hallway.AddItem(makeToLegendary(axe));
+
+            CurrentRoom = forest;
         }
         private Item makeToLegendary(Item item)
         {
