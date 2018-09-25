@@ -11,7 +11,7 @@ namespace Uppgift3
         //List<Room> rooms = new List<Room>();
         public World()
         {
-            Room forest = new Room("Dark Forest", "Description"); //starting out in forest with axe and tree to solve the uppgift
+            Room forest = new Room("Dark Forest", "There is an " +  + "on the floor."); //starting out in forest with axe and tree to solve the uppgift
 
             Room garden = new Room("Garden", "Description");
 

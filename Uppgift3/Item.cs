@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Item
+    public class Item
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -18,5 +18,7 @@ namespace Uppgift3
             Name = Name;
             Description = description;
         }
+
+        
     }
 }
