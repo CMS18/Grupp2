@@ -9,9 +9,17 @@ namespace Uppgift3
     class World
     {
         //List<Room> rooms = new List<Room>();
+        static Random rnd = new Random();
+        int randomLegendary = rnd.Next(1, 101);
+
+        Weapon legendary = new Weapon(1, "Legendary!", "It's a Legendary ", 100);
+        Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5);
+
+
+
         public World()
         {
-            Room forest = new Room("Dark Forest", "There is an " +  + "on the floor."); //starting out in forest with axe and tree to solve the uppgift
+            Room forest = new Room("Dark Forest", "There is an " + axe); //Starting out in forest with axe and tree to solve the uppgift
 
             Room garden = new Room("Garden", "Description");
 
@@ -19,7 +27,7 @@ namespace Uppgift3
 
             Room library = new Room("Library", "Description");
 
-            Room hall = new Room("Hall", "Description");
+            Room hallway = new Room("Hall", "Description");
 
             Room kitchen = new Room("Kitchen", "Description");
 
@@ -33,9 +41,9 @@ namespace Uppgift3
 
             Room guestRoom = new Room("Guest Room", "Description");
 
-            library.East = hall;
+            library.East = hallway; //Move to hallway
 
-            forest.North = garden;
+            forest.North = garden; //Move to garden
 
         }
     }
