@@ -73,41 +73,5 @@ namespace Uppgift3
             return boss;
         }
 
-        public void menu()
-        {
-            Console.WriteLine("Aloha and welcome to your Adventure");
-            Console.WriteLine("Please make a choice");
-            Console.WriteLine("1. New Game");
-            Console.WriteLine("2. Command List");
-            Console.WriteLine("3. How to Play?");
-            Console.WriteLine("4. Exit");
-            string input = Console.ReadLine();
-            switch (input)
-            {
-                case "1":
-                    new Game();
-                    break;
-
-                case "2":
-                    new Commands();
-                    break;
-
-                case "3":
-                    new Rules();
-                    break;
-
-                case "4":
-                    Environment.Exit(0);
-                    break;
-            }
-        }
-    }
-
-    public class Rules
-    {
-    }
-
-    public class Commands
-    {
-    }
+        
 }
