@@ -10,6 +10,8 @@ namespace Uppgift3
     {
         List<Room> rooms = new List<Room>();
         public Room CurrentRoom { get; set; }
+        Random rnd = new Random();
+
         public World()
         {
             // Rooms to use
@@ -17,7 +19,7 @@ namespace Uppgift3
             Room garden = new Room("Garden", "Description");
             Room garage = new Room("Garage", "Description");
             Room library = new Room("Library", "Description");
-            Room hallway = new Room("Hall", "Description");
+            Room hallway = new Room("Hallway", "Description. ");
             Room kitchen = new Room("Kitchen", "Description");
             Room masterBedroom = new Room("Master Bedroom", "Description");
             Room toilet = new Room("Toilet", "Description");
@@ -41,16 +43,16 @@ namespace Uppgift3
             Armor armor = new Armor(12, "Hat", "It's a fedora m'lady! *tips fedora*", 5, 1);
             Npc glassUnicorn = new Npc(10, "Buttstallion", "It's a glass unicorn!", true);
             
-            hallway.AddItem(makeToLegendary(armor));
-            hallway.AddItem(makeToLegendary(axe));
+            hallway.AddItem(MakeToLegendary(armor));
+            hallway.AddItem(MakeToLegendary(axe));
             //hallway.AddCreature(SpawnBoss(glassUnicorn));
 
 
             CurrentRoom = hallway;
         }
-        private Item makeToLegendary(Item item)
+        private Item MakeToLegendary(Item item)
         {
-            int randomLegendary = new Random().Next(1, 5); 
+            var randomLegendary = rnd.Next(1, 11); 
             if (randomLegendary == 1)
             {
                 item.Legendary = true;
@@ -61,11 +63,11 @@ namespace Uppgift3
 
         private Creature SpawnBoss(Creature boss)
         {
-            int randomBoss = new Random().Next(1, 5);
+            var randomBoss = rnd.Next(1, 5);
             if (randomBoss == 1)
             {
                 boss.Boss = true;
-                boss.Name = "Elite" + boss.Name;
+                boss.Name = "Elite " + boss.Name;
             }
 
             return boss;

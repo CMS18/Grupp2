@@ -25,6 +25,7 @@ namespace Uppgift3
             //USE THIS TO MOVE FORWARD
             Console.WriteLine(currentRoom.Title);
             Console.WriteLine(currentRoom.Description);
+
             //END TESTING
             do
             {

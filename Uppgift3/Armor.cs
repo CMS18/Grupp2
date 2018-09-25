@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Armor : Item
+    public class Armor : Item
     {
         private int Defense { get; set; }
 
