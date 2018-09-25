@@ -15,7 +15,7 @@ namespace Uppgift3
             Attack = attack;
         }
 
-        Weapon axe = new Weapon(1, "Axe", "Tool to chop things.", 5);
+        
     }
 
 }
