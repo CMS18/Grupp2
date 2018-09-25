@@ -8,11 +8,13 @@ namespace Uppgift3
 {
     class Creature
     {
+        public int ID { get; set; } // easier to randomize later on
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public Creature(string description, string name)
+        public Creature(string description, string name, int id)
         {
+            ID = id;
             Name = name;
             Description = description;
         }
