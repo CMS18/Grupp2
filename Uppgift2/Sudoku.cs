@@ -10,6 +10,7 @@ namespace Uppgift2
 {
     internal class Sudoku
     {
+        Stopwatch sw = new Stopwatch();
         private readonly char[,] board = new char[9, 9];
         public string BoardAsText { get; set; }
         private bool debug;
@@ -51,7 +52,7 @@ namespace Uppgift2
 
         public void Solve()
         {
-            Stopwatch sw = new Stopwatch();
+            
             sw.Start();
             Console.Clear();
             Console.WriteLine(BoardAsText);
@@ -60,12 +61,12 @@ namespace Uppgift2
             if (b != null)
             {
                 Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(b);
-                Console.WriteLine("After " + tries + " guesses I found this solution:\n\n" + BoardAsText + "\nIt only took me {0:%s\\.fff} seconds to find the answer. I'm so smart", sw.Elapsed);
+                Console.WriteLine("After " + tries + " guesses I found this solution:\n\n" + BoardAsText + "\nIt only took me {0:###.0} seconds to find the answer. I'm so smart", sw.Elapsed.TotalSeconds); 
             }
             else
             {
                 Console.SetCursorPosition(0, board.GetLength(1) +3);
-                Console.WriteLine("Not fair! This one is unsolvable! \nIt took me {0:%s\\.fff} seconds to figure that out, because I'm smart.", sw.Elapsed);
+                Console.WriteLine("Not fair! This one is unsolvable! \nIt took me {0:##0.##} seconds to figure that out, because I'm smart.", sw.Elapsed.TotalSeconds);
             }
         }
 
