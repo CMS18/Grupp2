@@ -31,7 +31,7 @@ namespace Uppgift3
             library.East = hallway; //Move to hallway
             forest.North = garden; //Move to garden
             hallway.West = library; //Move to library
-            hallway.South = garden; //Move to gareden
+            hallway.South = garden; //Move to garden
             garden.South = forest; //Move to forest
             garden.North = hallway; //move to hallway
 
