@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class World
+    public class World
     {
         //List<Room> rooms = new List<Room>();
         static Random rnd = new Random();
@@ -19,7 +19,7 @@ namespace Uppgift3
 
         public World()
         {
-            Room forest = new Room("Dark Forest", "There is an " + axe); //Starting out in forest with axe and tree to solve the uppgift
+            Room forest = new Room("Dark Forest", "There is an AXE on the floor. A TREE is in the way."); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
 
             Room garden = new Room("Garden", "Description");
 
