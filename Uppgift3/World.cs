@@ -35,6 +35,11 @@ namespace Uppgift3
 
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat","It's a fedora m'lady! *tips fedora*", 5, 1);
+            hallway.West = library; //Move to library
+            hallway.South = garden; //Move to gareden
+            forest.North = garden; //Move to garden
+            garden.South = forest; //Move to forest
+            garden.North = hallway; //move to hallway
 
             library.AddItem(makeToLegendary(armor));
             library.AddItem(makeToLegendary(axe));

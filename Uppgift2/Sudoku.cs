@@ -61,7 +61,7 @@ namespace Uppgift2
             if (b != null)
             {
                 Console.SetCursorPosition(0, board.GetLength(1) + 1); FormatBoard(b);
-                Console.WriteLine("After " + tries + " guesses I found this solution:\n\n" + BoardAsText + "\nIt only took me {0:##0.0} seconds to find the answer. I'm so smart", sw.Elapsed.TotalSeconds); 
+                Console.WriteLine("After " + tries + " guesses I found this solution:\n\n" + BoardAsText + "\nIt only took me {0:##0.0} seconds to find the answer, because I'm smart", sw.Elapsed.TotalSeconds); 
             }
             else
             {
