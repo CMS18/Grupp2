@@ -41,7 +41,7 @@ namespace Uppgift3
 
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora m'lady! *tips fedora*", 5, 1);
-            Npc glassUnicorn = new Npc(10, "Buttstallion", "It's a glass unicorn!", true);
+            Npc glassUnicorn = new Npc(10, "Butt Stallion", "unicorn made of glass", true);
             
             hallway.AddItem(MakeToLegendary(armor));
             hallway.AddItem(MakeToLegendary(axe));
@@ -67,7 +67,7 @@ namespace Uppgift3
             if (randomBoss == 1)
             {
                 boss.Boss = true;
-                boss.Name = "Elite " + boss.Name;
+                boss.Name = "an Elite " + boss.Name;
             }
 
             return boss;

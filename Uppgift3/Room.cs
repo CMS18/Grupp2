@@ -11,7 +11,9 @@ namespace Uppgift3
         //Properties that are needed
         public string Title { get; set; }
         public string Description {
-            get {
+            get
+            {
+                //TODO: fix so we can use 'a' or 'an' the correct way by adding another descriptions which looks for a vowel in the beginning.
                 _description = defaulDescription;
                 foreach (Item item in items)
                 {
@@ -19,14 +21,11 @@ namespace Uppgift3
                 }
                 foreach (Creature creature in creatures)
                 {
-                    _description += "There is a " + creature.Name + " here. ";
+                    _description += "There is a " + creature.Description + " in here. " + "It's " + creature.Name + "!";
                 }
                 return _description;
             }
-            set
-            {
-                _description = value;
-            }
+            set => _description = value;
         }
 
         private string defaulDescription;
