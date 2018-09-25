@@ -19,7 +19,7 @@ namespace Uppgift3
 
         public World()
         {
-            Room forest = new Room("Dark Forest", "There is an AXE on the floor. A TREE is in the way."); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
+            Room forest = new Room("Dark Forest", "You can see a house behind the THICKET covering the NORTH exit. There is an AXE on the floor. There are no other exits."); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
 
             Room garden = new Room("Garden", "Description");
 
@@ -42,8 +42,11 @@ namespace Uppgift3
             Room guestRoom = new Room("Guest Room", "Description");
 
             library.East = hallway; //Move to hallway
-
+            hallway.West = library; //Move to library
+            hallway.South = garden; //Move to gareden
             forest.North = garden; //Move to garden
+            garden.South = forest; //Move to forest
+            garden.North = hallway; //move to hallway
 
         }
     }
