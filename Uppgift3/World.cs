@@ -67,7 +67,7 @@ namespace Uppgift3
             if (randomBoss == 1)
             {
                 boss.Boss = true;
-                boss.Name = "Elite" + boss.Name;
+                boss.Name = "Elite " + boss.Name;
             }
 
             return boss;
