@@ -17,6 +17,10 @@ namespace Uppgift3
                 {
                     _description += "There is a " + item.Name + " in here. ";
                 }
+                foreach (Creature creature in creatures)
+                {
+                    _description += "There is a " + creature.Name + " here. ";
+                }
                 return _description;
             }
             set
@@ -44,6 +48,7 @@ namespace Uppgift3
             defaulDescription = description;
             items = new List<Item>();
             challenges = new List<Challenge>();
+            creatures = new List<Creature>();
         }
 
         // ADDERS AND GETTERS

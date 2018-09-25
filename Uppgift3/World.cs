@@ -45,7 +45,7 @@ namespace Uppgift3
             
             hallway.AddItem(MakeToLegendary(armor));
             hallway.AddItem(MakeToLegendary(axe));
-            //hallway.AddCreature(SpawnBoss(glassUnicorn));
+            hallway.AddCreature(SpawnBoss(glassUnicorn));
 
 
             CurrentRoom = hallway;
