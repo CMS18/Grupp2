@@ -97,9 +97,17 @@ namespace Uppgift3
                     break;
 
                 case "4":
-                    Environment.Exit(0);              
-                
+                    Environment.Exit(0);
+                    break;
             }
         }
+    }
+
+    public class Rules
+    {
+    }
+
+    public class Commands
+    {
     }
 }
