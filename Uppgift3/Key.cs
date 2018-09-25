@@ -8,5 +8,9 @@ namespace Uppgift3
 {
     class Key : Item
     {
+        public Key(int id, string name, string description) : base(id, name, description)
+        {
+
+        }
     }
 }

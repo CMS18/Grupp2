@@ -8,7 +8,7 @@ namespace Uppgift3
 {
     class NPC : Creature
     {
-        public NPC(string description, string name) : base(description, name)
+        public NPC(string description, string name, int id) : base(description, name, id)
         {
         }
     }

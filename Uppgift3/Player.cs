@@ -8,11 +8,11 @@ namespace Uppgift3
 {
     class Player : Creature
     {
-        private string gender; 
+        private string Gender; 
 
-        public Player(string description, string name, string _gender) : base(description, name)
+        public Player(string description, string name, string gender, int id) : base(description, name, id)
         {
-            gender = _gender;
+            Gender = gender;
         }
        
 
