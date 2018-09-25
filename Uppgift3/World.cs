@@ -14,7 +14,6 @@ namespace Uppgift3
 
         Weapon legendary = new Weapon(1, "Legendary!", "It's a Legendary ", 100);
         Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5);
-        afjipaepga
 
 
 
