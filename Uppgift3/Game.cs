@@ -21,8 +21,6 @@ namespace Uppgift3
             // THE GAME LOOP
             bool playing = true;
 
-            //THIS IS JUST SOME TESTING
-            //USE THIS TO MOVE FORWARD
             Console.WriteLine(currentRoom.Title);
             Console.WriteLine(currentRoom.Description);
 

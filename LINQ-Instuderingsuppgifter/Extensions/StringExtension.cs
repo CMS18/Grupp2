@@ -32,6 +32,21 @@ namespace LINQ_Instuderingsuppgifter.Extensions
         {
             return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
         }
-        
+        public static string ListToString(this List<string> strings)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (string s in strings)
+            {
+                if (!(s == strings.First()))
+                    builder.Append(", ");
+                builder.Append(s);
+            }
+            return builder.ToString();
+        }
+        public static List<int> Add(this List<int> list, params int[] i)
+        {
+            list.AddRange(i);
+            return list;
+        }
     }
 }
