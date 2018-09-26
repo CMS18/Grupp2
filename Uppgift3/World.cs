@@ -17,7 +17,9 @@ namespace Uppgift3
         public World()
         {
             // Rooms to use
-            Room forest = new Room("Dark Forest", "This is a dark forest. "); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
+            Room forest =
+                new Room("Dark Forest",
+                    "This is a dark forest. "); //starting out in forest with axe and tree to solve the uppgift - words in UpperCase have a meaning
             Room garden = new Room("Garden", "Description");
             Room garage = new Room("Garage", "Description");
             Room library = new Room("Library", "Description");
@@ -44,7 +46,7 @@ namespace Uppgift3
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora m'lady! *tips fedora*", 5, 1);
             Npc glassUnicorn = new Npc(10, "Butt Stallion", "unicorn made of glass", true);
-            
+
             hallway.AddItem(MakeToLegendary(armor));
             hallway.AddItem(MakeToLegendary(axe));
             hallway.AddCreature(SpawnBoss(glassUnicorn));
@@ -52,14 +54,16 @@ namespace Uppgift3
 
             CurrentRoom = hallway;
         }
+
         private Item MakeToLegendary(Item item)
         {
-            var randomLegendary = rnd.Next(1, 11); 
+            var randomLegendary = rnd.Next(1, 11);
             if (randomLegendary == 1)
             {
                 item.Legendary = true;
-                item.Name = "Legendary "+ item.Name;
+                item.Name = "Legendary " + item.Name;
             }
+
             return item;
         }
 
@@ -74,6 +78,5 @@ namespace Uppgift3
 
             return boss;
         }
-
-        
+    }
 }
