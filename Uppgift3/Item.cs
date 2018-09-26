@@ -20,6 +20,7 @@ namespace Uppgift3
             Name = name;
             Description = description;
             Weight = weight;
+
         }
 
         

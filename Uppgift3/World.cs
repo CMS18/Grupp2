@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Console = Colorful.Console;
 
 namespace Uppgift3
 {
@@ -56,7 +58,7 @@ namespace Uppgift3
             if (randomLegendary == 1)
             {
                 item.Legendary = true;
-                item.Name = "Legendary " + item.Name;
+                item.Name = "Legendary "+ item.Name;
             }
             return item;
         }
