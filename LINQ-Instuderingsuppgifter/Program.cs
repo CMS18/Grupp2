@@ -17,8 +17,21 @@ namespace LINQ_Instuderingsuppgifter
 
             //Console.WriteLine(text);
 
-            DateTime date = new DateTime(2018,2,24);
-            Console.WriteLine(date.GetLastDateOfMonth());
+            //DateTime date = new DateTime(2018,2,24);
+            //Console.WriteLine(date.GetLastDateOfMonth());
+
+            //List<string> strings = new List<string>();
+            //strings.Add("STRING 1");
+            //strings.Add("STRING 2");
+            //strings.Add("STRING 3");
+            //strings.Add("STRING 4");
+
+            //Console.WriteLine(strings.ListToString());
+
+            List<int> tal = new List<int>();
+            tal.Add(7, 8, 9, 10, 15, 27, 35, 90);
+            foreach(int t in tal)
+                Console.WriteLine(t);
         }
     }
 }
