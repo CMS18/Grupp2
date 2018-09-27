@@ -60,15 +60,15 @@ namespace Uppgift3
                 switch (input)
                 {
                     case "1":
-                        new Game().CreatePlayer();
+                        CreatePlayer();
                         break;
 
                     case "2":
-                        new RulesAndCommands().Commands();
+                        RulesAndCommands.Commands();
                         break;
 
                     case "3":
-                        new RulesAndCommands().Rules();
+                        RulesAndCommands.Rules();
                         break;
 
                     case "4":
