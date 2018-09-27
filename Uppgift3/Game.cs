@@ -52,11 +52,11 @@ namespace Uppgift3
                         break;
 
                     case "2":
-                        new Commands();
+                        new RulesAndCommands().Commands();
                         break;
 
                     case "3":
-                        new Rules();
+                        new RulesAndCommands().Rules();
                         break;
 
                     case "4":
