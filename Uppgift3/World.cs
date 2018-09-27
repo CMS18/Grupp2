@@ -37,19 +37,18 @@ namespace Uppgift3
             smallStreet.South = alleyway;      //Move to alleyway
             smallStreet.North = square;        //Move to hallway
             smallStreet.East = club;           //Go to the club
+            square.West = smallStreet;         //Go to street
 
 
-            square.AddItem(new Item(1, "Table", "This is a table made of cheap plastic.", 5));
-            square.AddItem(new Item(1, "Chair", "This is an ugly chair.", 5));
 
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say 'm'lady'.", 5, 1);
-            Npc glassUnicorn = new Npc(10, "Butt Stallion", "unicorn made of glass", true);
+            Npc diamondUnicorn = new Npc(10, "Butt Stallion", "unicorn made of diamonds", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
 
             square.AddItem(ChangeToLegendary(armor));
             square.AddItem(ChangeToLegendary(axe));
-            square.AddCreature(SpawnBoss(glassUnicorn));
+            square.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(bouncer);
 
 
