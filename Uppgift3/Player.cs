@@ -10,7 +10,7 @@ namespace Uppgift3
     {
         public string Gender { get; set; }
 
-        public Player(int id, string name, string description, string gender) : base(id, name, description)
+        public Player(string name, string description, string gender) : base(name, description)
         {
             Gender = gender;
         }

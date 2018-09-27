@@ -31,7 +31,6 @@ namespace Uppgift3
             smallStreet.South = alleyway;      //Move to alleyway
             smallStreet.North = squareTutorial;        //Move to hallway
             smallStreet.East = club;           //Go to the club
-            club.West = smallStreet;         //Go to street
 
             squareTutorial.TutorialFinish = true;
 

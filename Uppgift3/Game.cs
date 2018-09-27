@@ -35,6 +35,7 @@ namespace Uppgift3
             bool playing = true;
             bool tutorial = true;
             string input;
+            Item item = null;
             RoomDetails();
             do
             {
@@ -43,13 +44,16 @@ namespace Uppgift3
                     Console.WriteLine("\nWell played... almost! This was just the tutorial stupid.");
                     Console.Write("Do you want to continue with the REAL game? ");
                     input = Console.ReadLine().ToUpper();
+
+                    // just testing
+                    player = new Player("BOB", "AEMDAKMAE", "Male"); 
                     switch (input)
                     {
                         case "Y":
                         case "YES": currentRoom.TutorialFinish = false; break;
                         default: ExitGame(); break;
                     }
-                    System.Console.WriteLine("\nWelcome, to the real world PlayerName. ");   //TODO: player.getName or something
+                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name);   //TODO: player.getName or something
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
@@ -94,7 +98,6 @@ namespace Uppgift3
                     {
                         if(inputs.Count > 1)
                         {
-                            Item item = null;
                             inputs.RemoveAt(0);
                             string fullItemName = string.Join(" ", inputs) ;
                             
@@ -102,8 +105,9 @@ namespace Uppgift3
                                 item = currentRoom.Pickup(fullItemName);
                                 if (item != null)
                                 {
-                                    //player.AddItem(item);
+                                    
                                     currentRoom.RemoveItem(item);
+                                    //player.AddItem(item);
                                     Console.Write("You picked up a ");
                                     PrintItem(item);
                                     Console.WriteLine(". ");
@@ -116,6 +120,8 @@ namespace Uppgift3
                         if(inputs.Count > 1)
                         {
                             // TODO: player.RemoveItem --- currentRoom.Add
+                            player.RemoveItem(item);
+                            currentRoom.AddItem(item);
                         }
                     }
                     else if(inputs[0] == "USE")
@@ -126,8 +132,8 @@ namespace Uppgift3
         }
         private void PrintItem(Item item)
         {
-            if (item.Legendary) Console.Write(item.Name.ToUpper(), Color.Orange);
-            else Console.Write(item.Name.ToUpper(), Color.ForestGreen);
+            if (item.Legendary) Console.Write(item.Name.ToUpper(), Color.Goldenrod);
+            else Console.Write(item.Name.ToUpper(), Color.LimeGreen);
         }
         //TODO: Add same thing for creatures
         private void RoomDetails()
@@ -183,9 +189,9 @@ namespace Uppgift3
         public void CreatePlayer()
         {
             Console.Clear();
-            Console.Write("What is your name Adventurer? "); 
+            Console.Write("What is your name Adventurer? ");
             string playerName = Console.ReadLine();
-            player = new Player(1231, "BOB", "AEMDAKMAE", "Male");
+            
         }
         public void Formatting(string text)
         {
