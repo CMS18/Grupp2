@@ -187,21 +187,28 @@ namespace Uppgift3
             string playerName = Console.ReadLine();
             player = new Player(1231, "BOB", "AEMDAKMAE", "Male");
         }
-
+        public void Formatting(string text)
+        {
+            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (text.Length / 2)) + "}", text));
+        }
         public void Menu()
         {
             bool validInput = true;
             while(validInput)
-            {
+            {           
                 Console.Clear();
-                Console.WriteLine("\t\t\t***************************************");
-                Console.WriteLine("\t\t\t* Aloha and welcome to your Adventure *");
-                Console.WriteLine("\t\t\t***************************************");
-                Console.WriteLine("\t\t\t\tPlease make a choice");
-                Console.WriteLine("\n\t\t\t\t1. New Game");
-                Console.WriteLine("\n\t\t\t\t2. Command List");
-                Console.WriteLine("\n\t\t\t\t3. Are you a little dumb? L2P and RTFM");
-                Console.WriteLine("\n\t\t\t\t4. Exit");
+                string text = @"
+                                ***************************************
+                                * Aloha and welcome to your Adventure *
+                                ***************************************
+                                
+                                Please make a choice
+
+                                1. New Game
+                                2. Command List
+                                3. Are you a little dumb? L2P and RTFM
+                                4. Exit";
+                Formatting(text);
                 string input = Console.ReadLine();
                 switch (input)
                 {
