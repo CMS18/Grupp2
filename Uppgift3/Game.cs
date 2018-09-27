@@ -1,16 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Colorful;
+using Console = Colorful.Console;
 
 namespace Uppgift3
 {
     public class Game : World
     {
+
         Room currentRoom;
         Player player;
         World world;
+
+        //    foreach (Item item in items)
+        //{
+        //    _description += "There is a " + item.Name + " in here. ";
+        //}
+
+        //foreach (Creature creature in creatures)
+        // {
+        //_description += "There is a " + creature.Description + " in here. " + "It's " + creature.Name + "!";
+        // }
+   
 
         public Game()
         {
@@ -20,7 +35,7 @@ namespace Uppgift3
         {
             // THE GAME LOOP
             bool playing = true;
-
+            
             Console.WriteLine(currentRoom.Title);
             Console.WriteLine(currentRoom.Description);
 
@@ -32,6 +47,7 @@ namespace Uppgift3
 
         public void menu()
         {
+
             Console.WriteLine("Aloha and welcome to your Adventure");
             Console.WriteLine("Please make a choice");
             Console.WriteLine("1. New Game");

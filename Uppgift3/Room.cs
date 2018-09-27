@@ -10,26 +10,8 @@ namespace Uppgift3
     {
         //Properties that are needed
         public string Title { get; set; }
-        public string Description {
-            get
-            {
-                //TODO: fix so we can use 'a' or 'an' the correct way by adding another descriptions which looks for a vowel in the beginning.
-                _description = defaulDescription;
-                foreach (Item item in items)
-                {
-                    _description += "There is a " + item.Name + " in here. ";
-                }
-                foreach (Creature creature in creatures)
-                {
-                    _description += "There is a " + creature.Description + " in here. " + "It's " + creature.Name + "!";
-                }
-                return _description;
-            }
-            set => _description = value;
-        }
+        public string Description { get; set; }
 
-        private string defaulDescription;
-        private string _description;
 
         private List<Item> items;
         private List<Challenge> challenges;
@@ -44,7 +26,6 @@ namespace Uppgift3
         public Room(string title, string description)
         {
             Title = title;
-            defaulDescription = description;
             items = new List<Item>();
             challenges = new List<Challenge>();
             creatures = new List<Creature>();

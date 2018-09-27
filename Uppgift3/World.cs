@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Colorful;
 using Console = Colorful.Console;
 
 namespace Uppgift3
@@ -56,11 +57,12 @@ namespace Uppgift3
 
         private Item ChangeToLegendary(Item item)
         {
+            
             var randomLegendary = rnd.Next(1, 11);
             if (randomLegendary == 1)
             {
                 item.Legendary = true;
-                item.Name = "Legendary " + item.Name;
+                item.Name = "Legendary " + item.Name.ToUpper();
             }
 
             return item;
