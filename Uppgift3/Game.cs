@@ -72,7 +72,9 @@ namespace Uppgift3
                         break;
 
                     case "4":
-                        Console.Clear();                    
+                        Console.Clear();
+                        Console.WriteLine("Thank you for looking at the menu! Bye Bye!");
+                        Console.ReadLine();
                         Environment.Exit(0);
                         break;
                     default:
