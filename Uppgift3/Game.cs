@@ -12,6 +12,14 @@ namespace Uppgift3
         Player player;
         World world;
 
+        public string CreatePlayer()
+        {
+            Console.Clear();
+            Console.WriteLine("What is your name Adventurer?");
+            string playerName = Console.ReadLine();
+            return playerName;
+        }
+
         public Game()
         {
             currentRoom = CurrentRoom;
@@ -48,7 +56,7 @@ namespace Uppgift3
                 switch (input)
                 {
                     case "1":
-                        new Game().Play();
+                        new Game().CreatePlayer();
                         break;
 
                     case "2":
