@@ -17,6 +17,5 @@ namespace Uppgift3
             this.name = name;
             this.description = description;
         }
-
     }
 }

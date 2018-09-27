@@ -14,32 +14,178 @@ namespace Uppgift3
 
         Room currentRoom;
         Player player;
-        World world;
-
+        string[] allDirections = {"NORTH", "SOUTH", "WEST", "EAST"};
+        string[] exitMessages = {
+            "Go ahead and leave, see if I care",
+            "Get outta here and go back to your boring programs!",
+            "Coward!",
+            "Just leave. When you come back I will be waiting with a Hyperflux Railgun 2700",
+            "If I were your teacher, I'd deathmatch ya in a minute",
+            "There can only be one king, and apparently it's not you!",
+            "Rest in pieces!"
+        };
 
         public Game()
         {
-            currentRoom = CurrentRoom;
-
+            currentRoom = TutorialStart;
         }
         public void Play()
         {
-
             // THE GAME LOOP
             bool playing = true;
-            //END TESTING
+            bool tutorial = true;
+            string input;
+            RoomDetails();
             do
             {
+                if (currentRoom.TutorialFinish)
+                {
+                    Console.WriteLine("\nWell played... almost! This was just the tutorial stupid.");
+                    Console.Write("Do you want to continue with the REAL game? ");
+                    input = Console.ReadLine().ToUpper();
+                    switch (input)
+                    {
+                        case "Y":
+                        case "YES": currentRoom.TutorialFinish = false; break;
+                        default: ExitGame(); break;
+                    }
+                    System.Console.WriteLine("\nWelcome, to the real world PlayerName. ");   //TODO: player.getName or something
+                }
+                Console.WriteLine();
+                input = Console.ReadLine().ToUpper();
+                List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                if (input != "")
+                    if (inputs[0] == "MOVE" || inputs[0] == "GO")
+                    {
+                        if (allDirections.Contains(inputs[1]))
+                        {
+                            MoveTo(inputs[1]);
+                            RoomDetails();
+                        }
+                        else
+                            Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                    }
+                    // NORTH, SOUTH etc...
+                    else if (allDirections.Contains(input))        
+                    {
+                        if (inputs.Count == 1)
+                        {
+                            MoveTo(input);
+                            RoomDetails();
+                        }
+                        else
+                            Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                    }
+                    else if (inputs[0] == "LOOK" || inputs[0] == "EXAMINE")
+                    {
+                        if (inputs.Count == 1)
+                        {
+                            RoomDetails();
+                        }
+                        else
+                        {
+                            inputs.RemoveAt(0);
+                            string fullName = string.Join(" ", inputs);
+                            LookAt(fullName);
+                        }
+                    }
+                    else if (inputs[0] == "GET" || inputs[0] == "PICKUP")
+                    {
+                        if(inputs.Count > 1)
+                        {
+                            Item item = null;
+                            inputs.RemoveAt(0);
+                            string fullItemName = string.Join(" ", inputs) ;
+                            
+                            if (currentRoom.GetItems() != null) {
+                                item = currentRoom.Pickup(fullItemName);
+                                if (item != null)
+                                {
+                                    //player.AddItem(item);
+                                    currentRoom.RemoveItem(item);
+                                    Console.Write("You picked up a ");
+                                    PrintItem(item);
+                                    Console.WriteLine(". ");
+                                }
+                            }
+                        }
+                    }
+                    else if (inputs[0] == "DROP")
+                    {
+                        if(inputs.Count > 1)
+                        {
+                            // TODO: player.RemoveItem --- currentRoom.Add
+                        }
+                    }
+                    else if(inputs[0] == "USE")
+                    {
+                        // TODO: Use item with door or other item
+                    }
             } while (playing);
         }
+        private void PrintItem(Item item)
+        {
+            if (item.Legendary) Console.Write(item.Name.ToUpper(), Color.Orange);
+            else Console.Write(item.Name.ToUpper(), Color.ForestGreen);
+        }
+        //TODO: Add same thing for creatures
+        private void RoomDetails()
+        {
+            Console.WriteLine(currentRoom.Title + "\n" + currentRoom.Description);
+            foreach(var item in currentRoom.GetItems())
+            {
+                Console.Write("You see a ");
+                PrintItem(item);
+                Console.Write(". ");
+            }
+            if(currentRoom.GetItems().Count > 0 && currentRoom.GetCreatures().Count > 0 )
+                Console.WriteLine();
+        }
+        //TODO: print invalid command?
+        private void LookAt(string input)
+        {
+            if (allDirections.Contains(input))
+            {
+                if (currentRoom.Look(input) != null)
+                    Console.WriteLine("You look to the " + input + ". " + currentRoom.Look(input).Description);
+                else
+                    Console.WriteLine("You see nothing of interest there! ");
+            }
+            else
+            {
+                Item item = currentRoom.GetItems().Find(i => i.Name.ToUpper() == input);
+                Creature creature = currentRoom.GetCreatures().Find(c => c.Name.ToUpper() == input);
 
+                if (item != null) {
+                    Console.Write("You examine ");
+                    PrintItem(item);
+                    Console.Write(". " + item.Description);
+                }
+                else if (creature != null) Console.WriteLine("You look at the " + creature.Name + ". " + creature.Description);
+                else
+                {
+                    Console.Write("There's nothing to look at stupid!");
+                }
+            }
+            Console.WriteLine();
+        }
 
-        public string CreatePlayer()
+        private void MoveTo(string direction)
+        {
+            Room peekRoom = currentRoom.Look(direction);   //Change room to the looking direction
+            if (peekRoom == null)
+                Console.WriteLine("You can't go there dummy! ");
+            else
+                currentRoom = peekRoom;
+        }
+        //TODO: Add stuff to player
+        public void CreatePlayer()
         {
             Console.Clear();
-            Console.Write("What is your name Adventurer? ");
+            Console.Write("What is your name Adventurer? "); 
             string playerName = Console.ReadLine();
-            return playerName;
+            player = new Player(1231, "BOB", "AEMDAKMAE", "Male");
         }
 
         public void Menu()
@@ -85,6 +231,19 @@ namespace Uppgift3
                         break;
                 }
             }   
+        }
+        public void ExitGame()
+        {
+            Random r = new Random();
+            int roll = r.Next(0, exitMessages.Length);
+            Console.Write("\n"+exitMessages[roll], Color.Red);
+            for (int i = 0; i < 3; i++)
+            {
+                System.Threading.Thread.Sleep(1000);
+                Console.Write(".");
+            }
+            Console.WriteLine();
+            Environment.Exit(0);
         }
     }
 }

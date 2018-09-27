@@ -23,14 +23,12 @@ namespace Uppgift3
             inventory = new List<Item>();
         }
 
-        //TODO: Fix inventory for Creature
-
-        public void additem(Item item)
+        public void AddItem(Item item)
         {
             inventory.Add(item);
         }
 
-        public void removeitem(Item item)
+        public void RemoveItem(Item item)
         {
             inventory.Remove(item);
         }

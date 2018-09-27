@@ -12,10 +12,12 @@ namespace Uppgift3
         public string Title { get; set; }
         public string Description { get; set; }
 
-
         private List<Item> items;
         private List<Challenge> challenges;
         private List<Creature> creatures;
+        public bool Finish { get; set; }
+        public bool TutorialFinish { get; set; }
+
 
         //Possible exits 
         public Room North { get; set; }
@@ -27,6 +29,7 @@ namespace Uppgift3
         {
             Title = title;
             items = new List<Item>();
+            Description = description;
             challenges = new List<Challenge>();
             creatures = new List<Creature>();
         }
@@ -39,6 +42,10 @@ namespace Uppgift3
         public List<Item> GetItems()
         {
             return items;
+        }
+        public void RemoveItem(Item item)
+        {
+            items.Remove(item);
         }
         public void AddChallenge(Challenge challenge)
         {

@@ -21,23 +21,33 @@ namespace Uppgift3
             return creature.Description;
         }
 
-        public static void Move(this Room room, string direction)
+        public static Room Look(this Room room, string direction)
         {
             switch (direction)
             {
                 case "NORTH":
-                    room = room.North;
+                    if (room.North != null)
+                        return room.North;
                     break;
                 case "EAST":
-                    room = room.East;
+                    if (room.East != null)
+                        return room.East;
                     break;
                 case "SOUTH":
-                    room = room.South;
+                    if (room.South != null)
+                        return room.South;
                     break;
                 case "WEST":
-                    room = room.West;
+                    if (room.West != null)
+                        return room.West;
                     break;
             }
+            return null;
+        }
+
+        public static Item Pickup(this Room room, String item)
+        {
+            return room.GetItems().Find(i => i.Name.ToUpper() == item);
         }
 
         public static string Rules()

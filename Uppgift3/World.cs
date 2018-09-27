@@ -12,57 +12,52 @@ namespace Uppgift3
     public class World
     {
         List<Room> rooms = new List<Room>();
-        public Room CurrentRoom { get; set; }
+        public Room TutorialStart { get; set; }
+        public Room Start { get; set; }
         Random rnd = new Random();
 
         public World()
         {
             // Rooms to use
-            Room alleyway =
-                new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
+            Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
             Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. There's steam coming from a manhole in the middle of road. ");
-            Room garage = new Room("Garage", "Description");
-            Room library = new Room("Library", "Description");
+            Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room square = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room club = new Room("Puzzles", "It's a club called puzzles. But why is it called puzzles...? Maybe that's the puzzle..");
-            Room masterBedroom = new Room("Master Bedroom", "Description");
-            Room toilet = new Room("Toilet", "Description");
-            Room bathRoom = new Room("Bathroom", "Description");
-            Room diningRoom = new Room("Dining Room", "Description");
-            Room guestRoom = new Room("Guest Room", "Description");
 
             // Exits
             alleyway.North = smallStreet;      //Move to street
-            square.South = smallStreet;        //Move to street
+            squareTutorial.South = smallStreet;        //Move to street
             smallStreet.South = alleyway;      //Move to alleyway
-            smallStreet.North = square;        //Move to hallway
+            smallStreet.North = squareTutorial;        //Move to hallway
             smallStreet.East = club;           //Go to the club
-            square.West = smallStreet;         //Go to street
+            squareTutorial.West = smallStreet;         //Go to street
+
+            squareTutorial.TutorialFinish = true;
 
 
 
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say 'm'lady'.", 5, 1);
-            Npc diamondUnicorn = new Npc(10, "Butt Stallion", "unicorn made of diamonds", true);
+            Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds. ", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
 
-            square.AddItem(ChangeToLegendary(armor));
-            square.AddItem(ChangeToLegendary(axe));
-            square.AddCreature(SpawnBoss(diamondUnicorn));
+            smallStreet.AddItem(ChangeToLegendary(armor));
+            smallStreet.AddItem(ChangeToLegendary(axe));
+            squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(bouncer);
 
-
-            CurrentRoom = alleyway;
+            Start = square;
+            TutorialStart = alleyway;
         }
 
         private Item ChangeToLegendary(Item item)
         {
-            
-            var randomLegendary = rnd.Next(1, 11);
+            var randomLegendary = rnd.Next(1, 4);
             if (randomLegendary == 1)
             {
                 item.Legendary = true;
-                item.Name = "Legendary " + item.Name.ToUpper();
+                item.Name = "LEGENDARY "+item.Name;
             }
 
             return item;
