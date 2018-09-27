@@ -46,15 +46,15 @@ namespace Uppgift3
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say 'm'lady'.", 5, 1);
             Npc glassUnicorn = new Npc(10, "Butt Stallion", "unicorn made of glass", true);
 
-            hallway.AddItem(MakeToLegendary(armor));
-            hallway.AddItem(MakeToLegendary(axe));
+            hallway.AddItem(ChangeToLegendary(armor));
+            hallway.AddItem(ChangeToLegendary(axe));
             hallway.AddCreature(SpawnBoss(glassUnicorn));
 
 
             CurrentRoom = hallway;
         }
 
-        private Item MakeToLegendary(Item item)
+        private Item ChangeToLegendary(Item item)
         {
             var randomLegendary = rnd.Next(1, 11);
             if (randomLegendary == 1)
