@@ -9,10 +9,12 @@ namespace Uppgift3
     public class Npc : Creature
     {
         public bool Hostile { get; set; }
+        public int ID { get; set; }
 
-        public Npc(int id, string name, string description, bool hostile) : base(id, name, description)
+        public Npc(int id, string name, string description, bool hostile) : base(name, description)
         {
             Hostile = hostile;
+            ID = id;
         }
     }
 }
