@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Colorful;
 using Console = Colorful.Console;
 
+
 namespace Uppgift3
 {
     public class Game : World
@@ -20,7 +21,7 @@ namespace Uppgift3
             "Get outta here and go back to your boring programs!",
             "Coward!",
             "Just leave. When you come back I will be waiting with a Hyperflux Railgun 2700",
-            "If I were your teacher, I'd deathmatch ya in a minute",
+            "If I were your teacher, I'd deathmatch ya in a minute", //This special, modally marked form of be is used only for an unreal hypothetical. It is a relic of the Old English past subjunctive, and it was once used for far more than we use it today. Nice one :P
             "There can only be one king, and apparently it's not you!",
             "Rest in pieces!"
         };
@@ -46,14 +47,14 @@ namespace Uppgift3
                     input = Console.ReadLine().ToUpper();
 
                     // just testing
-                    player = new Player("BOB", "AEMDAKMAE", "Male"); 
+                    //player = new Player("BOB", "AEMDAKMAE", "Male"); 
                     switch (input)
                     {
                         case "Y":
                         case "YES": currentRoom.TutorialFinish = false; break;
                         default: ExitGame(); break;
                     }
-                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name);   //TODO: player.getName or something
+                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name);   //TODO: player.getName or something //DONE: Line 193 in method createPlayer()
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
@@ -190,8 +191,11 @@ namespace Uppgift3
         {
             Console.Clear();
             Console.Write("What is your name Adventurer? ");
-            string playerName = Console.ReadLine();
-            
+            string adventurerName = Console.ReadLine();
+            Console.WriteLine("Give a short description of yourself, {0}", adventurerName);
+            string adventurerDescription = Console.ReadLine();
+            new Player(adventurerName, adventurerDescription, "");
+            Play();         
         }
         public void Formatting(string text)
         {
