@@ -16,41 +16,30 @@ namespace Uppgift3
         Player player;
         World world;
 
-        //    foreach (Item item in items)
-        //{
-        //    _description += "There is a " + item.Name + " in here. ";
-        //}
-
-        //foreach (Creature creature in creatures)
-        // {
-        //_description += "There is a " + creature.Description + " in here. " + "It's " + creature.Name + "!";
-        // }
-   
-
-        public string CreatePlayer()
-        {
-            Console.Clear();
-            Console.WriteLine("What is your name Adventurer?");
-            string playerName = Console.ReadLine();
-            return playerName;
-        }
 
         public Game()
         {
             currentRoom = CurrentRoom;
+
         }
         public void Play()
         {
+
             // THE GAME LOOP
             bool playing = true;
-            
-            Console.WriteLine(currentRoom.Title);
-            Console.WriteLine(currentRoom.Description);
-
             //END TESTING
             do
             {
             } while (playing);
+        }
+
+
+        public string CreatePlayer()
+        {
+            Console.Clear();
+            Console.Write("What is your name Adventurer? ");
+            string playerName = Console.ReadLine();
+            return playerName;
         }
 
         public void Menu()
@@ -65,7 +54,7 @@ namespace Uppgift3
                 Console.WriteLine("\t\t\t\tPlease make a choice");
                 Console.WriteLine("\n\t\t\t\t1. New Game");
                 Console.WriteLine("\n\t\t\t\t2. Command List");
-                Console.WriteLine("\n\t\t\t\t3. How to Play?");
+                Console.WriteLine("\n\t\t\t\t3. Are you a little dumb? Learn how to play here.");
                 Console.WriteLine("\n\t\t\t\t4. Exit");
                 string input = Console.ReadLine();
                 switch (input)

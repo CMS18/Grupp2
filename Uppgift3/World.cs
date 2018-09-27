@@ -46,13 +46,15 @@ namespace Uppgift3
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say 'm'lady'.", 5, 1);
             Npc glassUnicorn = new Npc(10, "Butt Stallion", "unicorn made of glass", true);
+            Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
 
             hallway.AddItem(ChangeToLegendary(armor));
             hallway.AddItem(ChangeToLegendary(axe));
             hallway.AddCreature(SpawnBoss(glassUnicorn));
+            smallStreet.AddCreature(bouncer);
 
 
-            CurrentRoom = hallway;
+            CurrentRoom = alleyway;
         }
 
         private Item ChangeToLegendary(Item item)
