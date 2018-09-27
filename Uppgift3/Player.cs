@@ -14,7 +14,5 @@ namespace Uppgift3
         {
             Gender = gender;
         }
-       
-
     }
 }

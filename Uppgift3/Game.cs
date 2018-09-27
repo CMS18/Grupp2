@@ -54,7 +54,7 @@ namespace Uppgift3
                 Console.WriteLine("\t\t\t\tPlease make a choice");
                 Console.WriteLine("\n\t\t\t\t1. New Game");
                 Console.WriteLine("\n\t\t\t\t2. Command List");
-                Console.WriteLine("\n\t\t\t\t3. Are you a little dumb? Learn how to play here.");
+                Console.WriteLine("\n\t\t\t\t3. Are you a little dumb? L2P and RTFM");
                 Console.WriteLine("\n\t\t\t\t4. Exit");
                 string input = Console.ReadLine();
                 switch (input)
