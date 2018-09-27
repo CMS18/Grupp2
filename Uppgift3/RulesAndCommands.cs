@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Rules
+    public class RulesAndCommands
     {
+        public void Commands()
+        {
+
+        }
+
+        public void Rules()
+        {
+
+        }
     }
 }
