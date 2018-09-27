@@ -30,33 +30,47 @@ namespace Uppgift3
             } while (playing);
         }
 
-        public void menu()
+        public void Menu()
         {
-            Console.WriteLine("Aloha and welcome to your Adventure");
-            Console.WriteLine("Please make a choice");
-            Console.WriteLine("1. New Game");
-            Console.WriteLine("2. Command List");
-            Console.WriteLine("3. How to Play?");
-            Console.WriteLine("4. Exit");
-            string input = Console.ReadLine();
-            switch (input)
+            bool validInput = true;
+            while(validInput)
             {
-                case "1":
-                    new Game();
-                    break;
+                Console.Clear();
+                Console.WriteLine("\t\t\t***************************************");
+                Console.WriteLine("\t\t\t* Aloha and welcome to your Adventure *");
+                Console.WriteLine("\t\t\t***************************************");
+                Console.WriteLine("\t\t\t\tPlease make a choice");
+                Console.WriteLine("\n\t\t\t\t1. New Game");
+                Console.WriteLine("\n\t\t\t\t2. Command List");
+                Console.WriteLine("\n\t\t\t\t3. How to Play?");
+                Console.WriteLine("\n\t\t\t\t4. Exit");
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        new Game().Play();
+                        break;
 
-                case "2":
-                    new Commands();
-                    break;
+                    case "2":
+                        new Commands();
+                        break;
 
-                case "3":
-                    new Rules();
-                    break;
+                    case "3":
+                        new Rules();
+                        break;
 
-                case "4":
-                    Environment.Exit(0);
-                    break;
-            }
+                    case "4":
+                        Console.Clear();                    
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Wrong input! Please chose a valid number!");
+                        Console.ReadLine();
+                        //validInput = false;
+                        break;
+                }
+            }   
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Uppgift3
     {
         static void Main(string[] args)
         {
-
-            new Game().Play();
-            Console.ReadLine();
+            new Game().Menu();
+            //new Game().Play();
+            //Console.ReadLine();
 
         }
     }
