@@ -45,10 +45,15 @@ namespace Uppgift3
             return null;
         }
 
-        public static Item Pickup(this Room room, String item)
+        public static Item Pickup(this Room room, string item)
         {
             return room.GetItems().Find(i => i.Name.ToUpper() == item);
         }
+        public static Item Drop(this Creature inventory, string item)
+        {
+            return inventory.GetItems().Find(i => i.Name.ToUpper() == item);
+        }
+
 
         public static string Rules()
         {

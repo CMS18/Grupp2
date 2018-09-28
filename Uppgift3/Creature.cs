@@ -30,5 +30,10 @@ namespace Uppgift3
         {
             inventory.Remove(item);
         }
+
+        public List<Item> GetItems()
+        {
+            return inventory;
+        }
     }
 }

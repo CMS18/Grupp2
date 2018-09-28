@@ -46,8 +46,6 @@ namespace Uppgift3
                     Console.Write("Do you want to continue with the REAL game? ");
                     input = Console.ReadLine().ToUpper();
 
-                    // just testing
-                    //player = new Player("BOB", "AEMDAKMAE", "Male"); 
                     switch (input)
                     {
                         case "Y":
@@ -106,9 +104,8 @@ namespace Uppgift3
                                 item = currentRoom.Pickup(fullItemName);
                                 if (item != null)
                                 {
-                                    
                                     currentRoom.RemoveItem(item);
-                                    //player.AddItem(item);
+                                    player.AddItem(item);
                                     Console.Write("You picked up a ");
                                     PrintItem(item);
                                     Console.WriteLine(". ");
@@ -120,9 +117,21 @@ namespace Uppgift3
                     {
                         if(inputs.Count > 1)
                         {
-                            // TODO: player.RemoveItem --- currentRoom.Add
-                            player.RemoveItem(item);
-                            currentRoom.AddItem(item);
+                            inputs.RemoveAt(0);
+                            string wholeItemName = string.Join(" ", inputs);
+
+                            if (player.GetItems() != null)
+                            {
+                                item = player.Drop(wholeItemName);
+                                if (item != null)
+                                {
+                                    player.RemoveItem(item);
+                                    currentRoom.AddItem(item);
+                                    Console.Write("You dropped a ");
+                                    PrintItem(item);
+                                    Console.WriteLine(". ");
+                                }
+                            }
                         }
                     }
                     else if(inputs[0] == "USE")
@@ -194,7 +203,7 @@ namespace Uppgift3
             string adventurerName = Console.ReadLine();
             Console.WriteLine("Give a short description of yourself, {0}", adventurerName);
             string adventurerDescription = Console.ReadLine();
-            new Player(adventurerName, adventurerDescription, "");
+            player = new Player(adventurerName, adventurerDescription, "");
             Play();         
         }
         public void Formatting(string text)
