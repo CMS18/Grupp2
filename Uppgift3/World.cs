@@ -44,7 +44,7 @@ namespace Uppgift3
             smallStreet.AddItem(ChangeToLegendary(armor));
             smallStreet.AddItem(ChangeToLegendary(axe));
             squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
-            smallStreet.AddCreature(bouncer);
+            smallStreet.AddCreature(SpawnBoss(bouncer));
 
             Start = square;
             TutorialStart = alleyway;
@@ -62,16 +62,16 @@ namespace Uppgift3
             return item;
         }
 
-        private Creature SpawnBoss(Creature boss)
+        private Creature SpawnBoss(Creature npc)
         {
             var randomBoss = rnd.Next(1, 5);
             if (randomBoss == 1)
             {
-                boss.Boss = true;
-                boss.Name = "an Elite " + boss.Name;
+                npc.Elite = true;
+                npc.Name = "Elite " + npc.Name;
             }
 
-            return boss;
+            return npc;
         }
     }
 }

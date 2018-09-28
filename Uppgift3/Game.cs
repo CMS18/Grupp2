@@ -58,7 +58,11 @@ namespace Uppgift3
                 input = Console.ReadLine().ToUpper();
                 List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-                if (input != "")
+                if (input != " ")
+                    if (inputs[0] == "EXIT")
+                    {
+                        ExitGame();
+                    }
                     if (inputs[0] == "MOVE" || inputs[0] == "GO")
                     {
                         if (allDirections.Contains(inputs[1]))
@@ -142,8 +146,11 @@ namespace Uppgift3
         }
         private void PrintItem(Item item)
         {
-            if (item.Legendary) Console.Write(item.Name.ToUpper(), Color.Goldenrod);
-            else Console.Write(item.Name.ToUpper(), Color.LimeGreen);
+            Console.Write(item.Name.ToUpper(), item.Legendary ? Color.Goldenrod : Color.LimeGreen);
+        }
+        private void PrintCreature(Creature npc)
+        {
+            Console.Write(npc.Name.ToUpper(), npc.Elite ? Color.Yellow : Color.Crimson);
         }
         //TODO: Add same thing for creatures
         private void RoomDetails()
@@ -155,7 +162,13 @@ namespace Uppgift3
                 PrintItem(item);
                 Console.Write(". ");
             }
-            if(currentRoom.GetItems().Count > 0 && currentRoom.GetCreatures().Count > 0 )
+            foreach (var npc in currentRoom.GetCreatures())
+            {
+                Console.Write("There is a ");
+                PrintCreature(npc);
+                Console.Write(" here. ");
+            }
+            if (currentRoom.GetItems().Count > 0 && currentRoom.GetCreatures().Count > 0 )
                 Console.WriteLine();
         }
         //TODO: print invalid command?
@@ -178,7 +191,12 @@ namespace Uppgift3
                     PrintItem(item);
                     Console.Write(". " + item.Description);
                 }
-                else if (creature != null) Console.WriteLine("You look at the " + creature.Name + ". " + creature.Description);
+                else if (creature != null)
+                {
+                    Console.Write("You look at the ");
+                    PrintCreature(creature);
+                    Console.Write(". " + creature.Description);
+                }
                 else
                 {
                     Console.Write("There's nothing to look at stupid!");
@@ -201,7 +219,7 @@ namespace Uppgift3
             Console.Clear();
             Console.Write("What is your name Adventurer? ");
             string adventurerName = Console.ReadLine();
-            Console.WriteLine("Give a short description of yourself, {0}", adventurerName);
+            Console.WriteLine($"Give a short description of yourself, {adventurerName}");
             string adventurerDescription = Console.ReadLine();
             player = new Player(adventurerName, adventurerDescription, "");
             Play();         
@@ -253,7 +271,6 @@ namespace Uppgift3
                         Console.Clear();
                         Console.WriteLine("Wrong input! Please chose a valid number!");
                         Console.ReadLine();
-                        //validInput = false;
                         break;
                 }
             }   
