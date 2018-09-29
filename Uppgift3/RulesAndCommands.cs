@@ -55,13 +55,37 @@ namespace Uppgift3
         }
 
 
-        public static string Rules()
+        public static void Rules()
         {
-            return "These are the rules: ";
+            string rules = @"
+                             How to play: 
+                             
+                             After starting a new game, you will be asked 
+                             for your name and a short description of yourself
+
+                             ";
+
+
+            new Game().Formatting(rules);
+            Console.ReadLine();
         }
-        public static string Commands()
+        public static void Commands()
         {
-            return "These are the commands: ";
+            string commands = @"
+                                These are the commands: 
+                                
+                                Go / Move
+                                Look / Examine
+                                Get / Pickup
+                                Drop
+                                Use
+                                Exit
+                                Commands
+                                Rules
+
+                                Figure out yourself how to use them, adventurer!";
+            new Game().Formatting(commands);
+            Console.ReadLine();
         }
     }
 }

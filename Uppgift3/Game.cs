@@ -142,6 +142,14 @@ namespace Uppgift3
                     {
                         // TODO: Use item with door or other item
                     }
+                    else if (inputs[0] == "COMMANDS")
+                    {
+                    RulesAndCommands.Commands();
+                    }
+                    else if (inputs[0] == "RULES")
+                    {
+                    RulesAndCommands.Rules();
+                    }
             } while (playing);
         }
         private void PrintItem(Item item)
