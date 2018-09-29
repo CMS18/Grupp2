@@ -303,7 +303,28 @@ namespace Uppgift3
             if (peekRoom == null)
                 Console.WriteLine("You can't go there dummy! ");
             else
-                currentRoom = peekRoom;
+            {
+                //TODO: GET DOOR and see if it's open
+                Door door = currentRoom.GetDoor(direction);
+                if(door != null)
+                {
+                    Console.Write("There is a ");
+                    PrintItem(door);
+                    if (door.Locked == true)
+                    {
+                        Console.WriteLine("It seems to be locked. ");
+                    }
+                    else
+                    {
+                        currentRoom = peekRoom;
+                    }
+                    Console.WriteLine();
+                }
+                else
+                {
+                    currentRoom = peekRoom;
+                }
+            }
         }
         //TODO: Add stuff to player
         public void CreatePlayer()

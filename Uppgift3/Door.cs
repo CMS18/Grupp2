@@ -8,8 +8,10 @@ namespace Uppgift3
 {
     public class Door : Item
     {
-        public Door(int id, string name, string description) : base(id, name, description, 0)
+        public bool Locked { get; set; }
+        public Door(int id, string name, string description, bool locked) : base(id, name, description, 0)
         {
+            Locked = locked;
         }
     }
 }

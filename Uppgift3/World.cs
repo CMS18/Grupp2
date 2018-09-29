@@ -31,11 +31,11 @@ namespace Uppgift3
             smallStreet.East = club;           //Go to the club
             club.West = smallStreet;
 
-            Door clubDoor = new Door(99, "Club door", "The door is made of thick metal of some sort, you would need a keycard to open it. ")
+            Door clubDoor = new Door(99, "Club door", "The door is made of thick metal of some sort, you would need a keycard to open it. ", true)
             {
                 ChangedDescription = "The door is wide open. "
             };
-            smallStreet.AddDoor(clubDoor, 'E');
+            smallStreet.AddDoor(clubDoor, "EAST");
 
             alleyway.AddItem(new Item(99, "Dirty keycard", "It's a plastic keycard, the colors all faded but on it you notice the washed out remains of a word; zzl. ", 0));
             smallStreet.AddItem(new Item(98, "Blue keycard", "It's a plastic keycard, it's blue with no text on it. ", 0));
