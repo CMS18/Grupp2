@@ -31,7 +31,7 @@ namespace Uppgift3
             smallStreet.East = club;           //Go to the club
             club.West = smallStreet;
 
-            Door clubDoor = new Door(99, "Door", "The door is made of thick metal of some sort, you would need a keycard to open it. ")
+            Door clubDoor = new Door(99, "Club door", "The door is made of thick metal of some sort, you would need a keycard to open it. ")
             {
                 ChangedDescription = "The door is wide open. "
             };

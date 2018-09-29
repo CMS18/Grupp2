@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Colorful;
 using Console = Colorful.Console;
 
-
 namespace Uppgift3
 {
     public class Game : World
@@ -33,7 +32,6 @@ namespace Uppgift3
         public void Play()
         {
             bool playing = true;
-            bool tutorial = true;
             string input;
             Item item = null;
 
@@ -57,6 +55,7 @@ namespace Uppgift3
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
+                Console.WriteLine();
                 List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
                 if (!string.IsNullOrWhiteSpace(input))
@@ -156,46 +155,69 @@ namespace Uppgift3
                     {
                         RulesAndCommands.Rules();
                     }
-                    // TODO: Command that prints the inventory
+                    else if (inputs[0] == "INVENTORY")
+                    {
+                        Console.WriteLine("You look through your pockets. ");
+                        Console.WriteLine("INVENTORY");
+                        Console.WriteLine("-----------------------------------");
+                        if (player.GetItems().Count == 0)
+                        {
+                            Console.Write("Empty");
+                        }
+                        else
+                        {
+                            foreach (Item i in player.GetItems())
+                            {
+                                PrintItem(i);
+                                Console.Write(" ");
+                            }
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("-----------------------------------");
+                    }
                 }
             } while (playing);
         }
 
         private void UseItem(List<string> inputs)
         {
-            Item item = player.GetItems().Find(i => i.Name.ToUpper() == inputs[1].ToUpper());
+            int indexOfOn = inputs.FindIndex(w => w == "ON");
+            string wholeItemName = "";
+            if (indexOfOn >= 0)
+                wholeItemName = string.Join(" ", inputs.ToArray(), 1, indexOfOn-1);
+            else
+                wholeItemName = string.Join(" ", inputs.ToArray(), 1, inputs.Count-1);
+            Item item = player.GetItems().Find(i => i.Name.ToUpper() == wholeItemName.ToUpper());
+
             if (item != null)
             {
-                if (inputs.Count > 2 && inputs[2] == "ON")
+                if (indexOfOn >= 0 && inputs.Count > indexOfOn)
                 {
-                    if (inputs.Count > 3)
+                    string wholeTargetName = string.Join(" ", inputs.ToArray(), indexOfOn+1, inputs.Count - indexOfOn -1);
+                    // Check for a target item in the room
+                    Item target = currentRoom.GetItems().Find(i => i.Name.ToUpper() == wholeTargetName.ToUpper());
+                    // Check for a target item in the inventory
+                    if (target == null)
+                        target = player.GetItems().Find(i => i.Name.ToUpper() == wholeTargetName.ToUpper());
+                    // Check for a target door in the room
+                    if (target == null)
                     {
-                        // Check for a target item in the room
-                        Item target = currentRoom.GetItems().Find(i => i.Name.ToUpper() == inputs[3].ToUpper());
-                        // Check for a target item in the inventory
-                        if (target == null)
-                            target = player.GetItems().Find(i => i.Name.ToUpper() == inputs[3].ToUpper());
-                        // Check for a target door in the room
-                        if (target == null)
-                        {
-                            if(currentRoom.GetDoors().Count != 0)
-                                target = currentRoom.GetDoors().Where(d => d.Value.Name.ToUpper() == inputs[3].ToUpper()).Select(d => d.Value).FirstOrDefault();
-                        }
-
-                        if (target != null)
-                        {
-                            target = item.Use(target);
-                            Console.WriteLine(target.Description);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Huh? Use it on what now!? ");
-                        }
+                        if (currentRoom.GetDoors().Count != 0)
+                            target = currentRoom.GetDoors().Where(d => d.Value.Name.ToUpper() == wholeTargetName.ToUpper()).Select(d => d.Value).FirstOrDefault();
+                    }
+                    if (target == null)
+                    {
+                        Console.WriteLine("Huh? Use it on what now!? ");
                     }
                     else
                     {
-                        Console.WriteLine("Invalid command! USE 'ITEM' ON 'TARGET_ITEM'");
+                        target = item.Use(target);
+                        Console.WriteLine(target.Description);
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid command! USE 'ITEM' ON 'TARGET_ITEM'");
                 }
             }
             else
@@ -244,6 +266,16 @@ namespace Uppgift3
             else
             {
                 Item item = currentRoom.GetItems().Find(i => i.Name.ToUpper() == input.ToUpper());
+                if(item == null)
+                    item = player.GetItems().Find(i => i.Name.ToUpper() == input.ToUpper());
+                if (item == null)
+                    item = player.GetItems().Find(i => i.Name.ToUpper() == input.ToUpper());
+                // Check for a door in the room
+                if (item == null)
+                {
+                    if (currentRoom.GetDoors().Count != 0)
+                        item = currentRoom.GetDoors().Where(d => d.Value.Name.ToUpper() == input.ToUpper()).Select(d => d.Value).FirstOrDefault();
+                }
                 Creature creature = currentRoom.GetCreatures().Find(c => c.Name.ToUpper() == input.ToUpper());
 
                 if (item != null) {
