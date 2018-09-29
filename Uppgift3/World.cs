@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Colorful;
-using Console = Colorful.Console;
 
 namespace Uppgift3
 {
@@ -31,6 +29,15 @@ namespace Uppgift3
             smallStreet.South = alleyway;      //Move to alleyway
             smallStreet.North = squareTutorial;        //Move to hallway
             smallStreet.East = club;           //Go to the club
+            club.West = smallStreet;
+
+            Door clubDoor = new Door(99, "Door", "The door is made of thick metal of some sort, you would need a keycard to open it. ")
+            {
+                ChangedDescription = "The door is wide open. "
+            };
+            smallStreet.AddDoor(clubDoor, 'E');
+
+            smallStreet.AddItem(new Item(99, "Keycard", "It's a plastic keycard, the colors all faded but on it you notice the washed out remains of a word; zzl. ", 0));
 
             squareTutorial.TutorialFinish = true;
 

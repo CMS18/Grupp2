@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace Uppgift3
 {
-    class Door
+    public class Door : Item
     {
-        private int id;
-        private string name;
-        private string description;
-        public Door(int id, string name, string description)
+        public Door(int id, string name, string description) : base(id, name, description, 0)
         {
-            this.id = id;
-            this.name = name;
-            this.description = description;
         }
     }
 }

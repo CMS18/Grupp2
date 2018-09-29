@@ -25,6 +25,8 @@ namespace Uppgift3
         public Room South { get; set; }
         public Room West { get; set; }
 
+        private Dictionary<char, Door> doors;
+
         public Room(string title, string description)
         {
             Title = title;
@@ -32,6 +34,7 @@ namespace Uppgift3
             Description = description;
             challenges = new List<Challenge>();
             creatures = new List<Creature>();
+            doors = new Dictionary<char, Door>();
         }
 
         // ADDERS AND GETTERS
@@ -62,6 +65,20 @@ namespace Uppgift3
         public List<Creature> GetCreatures()
         {
             return creatures;
+        }
+        public void AddDoor(Door door, char direction)
+        {
+            doors.Add(direction, door);
+        }
+        public Door GetDoor(char direction)
+        { 
+            Door door;
+            doors.TryGetValue(direction, out door);
+            return door;
+        }
+        public Dictionary<char, Door> GetDoors()
+        {
+            return doors;
         }
     }
 }

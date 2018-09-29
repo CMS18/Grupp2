@@ -14,15 +14,31 @@ namespace Uppgift3
         public int Weight { get; set; }
         public bool Legendary { get; set; }
 
+        //Properties for when the item has changed
+        private bool changed;
+        public string ChangedName { get; set; }
+        public string ChangedDescription { get; set; }
+        public int ChangedWeight { get; set; }
+
+
         public Item (int id, string name, string description, int weight)
         {
             ID = id;
             Name = name;
             Description = description;
             Weight = weight;
-
+            changed = false;
         }
-
-        
+        public void Change()
+        {
+            changed = true;
+            Name = ChangedName;
+            Description = ChangedDescription;
+            Weight = ChangedWeight;
+        }
+        public bool IsChanged()
+        {
+            return changed;
+        }
     }
 }

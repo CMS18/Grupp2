@@ -32,12 +32,13 @@ namespace Uppgift3
         }
         public void Play()
         {
-            // THE GAME LOOP
             bool playing = true;
             bool tutorial = true;
             string input;
             Item item = null;
+
             RoomDetails();
+            // THE GAME LOOP
             do
             {
                 if (currentRoom.TutorialFinish)
@@ -52,18 +53,19 @@ namespace Uppgift3
                         case "YES": currentRoom.TutorialFinish = false; break;
                         default: ExitGame(); break;
                     }
-                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name);   //TODO: player.getName or something //DONE: Line 193 in method createPlayer()
+                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name +". ");   //TODO: player.getName or something //DONE: Line 193 in method createPlayer()
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
                 List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-                if (input != " ")
+                if (!string.IsNullOrWhiteSpace(input))
+                {
                     if (inputs[0] == "EXIT")
                     {
                         ExitGame();
                     }
-                    if (inputs[0] == "MOVE" || inputs[0] == "GO")
+                    else if (inputs[0] == "MOVE" || inputs[0] == "GO")
                     {
                         if (allDirections.Contains(inputs[1]))
                         {
@@ -74,7 +76,7 @@ namespace Uppgift3
                             Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
                     }
                     // NORTH, SOUTH etc...
-                    else if (allDirections.Contains(input))        
+                    else if (allDirections.Contains(input))
                     {
                         if (inputs.Count == 1)
                         {
@@ -99,12 +101,13 @@ namespace Uppgift3
                     }
                     else if (inputs[0] == "GET" || inputs[0] == "PICKUP")
                     {
-                        if(inputs.Count > 1)
+                        if (inputs.Count > 1)
                         {
                             inputs.RemoveAt(0);
-                            string fullItemName = string.Join(" ", inputs) ;
-                            
-                            if (currentRoom.GetItems() != null) {
+                            string fullItemName = string.Join(" ", inputs);
+
+                            if (currentRoom.GetItems() != null)
+                            {
                                 item = currentRoom.Pickup(fullItemName);
                                 if (item != null)
                                 {
@@ -119,7 +122,7 @@ namespace Uppgift3
                     }
                     else if (inputs[0] == "DROP")
                     {
-                        if(inputs.Count > 1)
+                        if (inputs.Count > 1)
                         {
                             inputs.RemoveAt(0);
                             string wholeItemName = string.Join(" ", inputs);
@@ -138,20 +141,69 @@ namespace Uppgift3
                             }
                         }
                     }
-                    else if(inputs[0] == "USE")
+                    else if (inputs[0] == "USE")
                     {
-                        // TODO: Use item with door or other item
+                        if (inputs.Count > 1)
+                        {
+                            UseItem(inputs);
+                        }
                     }
                     else if (inputs[0] == "COMMANDS")
                     {
-                    RulesAndCommands.Commands();
+                        RulesAndCommands.Commands();
                     }
                     else if (inputs[0] == "RULES")
                     {
-                    RulesAndCommands.Rules();
+                        RulesAndCommands.Rules();
                     }
+                    // TODO: Command that prints the inventory
+                }
             } while (playing);
         }
+
+        private void UseItem(List<string> inputs)
+        {
+            Item item = player.GetItems().Find(i => i.Name.ToUpper() == inputs[1].ToUpper());
+            if (item != null)
+            {
+                if (inputs.Count > 2 && inputs[2] == "ON")
+                {
+                    if (inputs.Count > 3)
+                    {
+                        // Check for a target item in the room
+                        Item target = currentRoom.GetItems().Find(i => i.Name.ToUpper() == inputs[3].ToUpper());
+                        // Check for a target item in the inventory
+                        if (target == null)
+                            target = player.GetItems().Find(i => i.Name.ToUpper() == inputs[3].ToUpper());
+                        // Check for a target door in the room
+                        if (target == null)
+                        {
+                            if(currentRoom.GetDoors().Count != 0)
+                                target = currentRoom.GetDoors().Where(d => d.Value.Name.ToUpper() == inputs[3].ToUpper()).Select(d => d.Value).FirstOrDefault();
+                        }
+
+                        if (target != null)
+                        {
+                            target = item.Use(target);
+                            Console.WriteLine(target.Description);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Huh? Use it on what now!? ");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid command! USE 'ITEM' ON 'TARGET_ITEM'");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Are you blind? You don't have an item like that. ");
+            }
+        }
+
         private void PrintItem(Item item)
         {
             Console.Write(item.Name.ToUpper(), item.Legendary ? Color.Goldenrod : Color.LimeGreen);
@@ -191,8 +243,8 @@ namespace Uppgift3
             }
             else
             {
-                Item item = currentRoom.GetItems().Find(i => i.Name.ToUpper() == input);
-                Creature creature = currentRoom.GetCreatures().Find(c => c.Name.ToUpper() == input);
+                Item item = currentRoom.GetItems().Find(i => i.Name.ToUpper() == input.ToUpper());
+                Creature creature = currentRoom.GetCreatures().Find(c => c.Name.ToUpper() == input.ToUpper());
 
                 if (item != null) {
                     Console.Write("You examine ");

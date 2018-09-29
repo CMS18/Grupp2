@@ -53,7 +53,12 @@ namespace Uppgift3
         {
             return inventory.GetItems().Find(i => i.Name.ToUpper() == item);
         }
-
+        public static Item Use(this Item item, Item targetItem)
+        {
+            if(item.ID == targetItem.ID)
+                targetItem.Change();
+            return targetItem;
+        }
 
         public static void Rules()
         {
