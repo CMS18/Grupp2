@@ -66,7 +66,16 @@ namespace Uppgift3
                              How to play: 
                              
                              After starting a new game, you will be asked 
-                             for your name and a short description of yourself
+                             for your name and a short description of yourself.
+                             After that the tutorial will start and you'll have
+                             to figure out how to interact with the game environment.
+                             Try to enter commands into the console.
+                            
+                             Available Items will be highlighted and can be interacted 
+                             with. For a list of commands just type 'commands' in the 
+                             console. To read this bit again, type 'rules'!
+
+                             GLHF with our game.
 
                              ";
 
