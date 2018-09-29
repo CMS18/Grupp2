@@ -18,7 +18,7 @@ namespace Uppgift3
         {
             // Rooms to use
             Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
-            Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. There's steam coming from a manhole in the middle of road. ");
+            Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. There's steam coming from a manhole in the middle the of road. ");
             Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room square = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room club = new Room("Puzzles", "It's a club called puzzles. But why is it called puzzles...? Maybe that's the puzzle..");
@@ -43,7 +43,19 @@ namespace Uppgift3
             squareTutorial.TutorialFinish = true;
 
 
-
+            Item datapad = new Item(105, "Datapad", "It's one of the newer models, someone must have dropped it. ", 2)
+            {
+                ChangedDescription = "*Some RETRO music is playing*\n"+
+                                        "We're no strangers to love\n"+
+                                        "You know the rules and so do I\n" +
+                                        "You wouldn't get this from any other guy\n" +
+                                        "I just wanna tell you how I'm feeling\n" +
+                                        "Gotta make you understand\n"+
+                                        "Never gonna give you up\n"+
+                                        "Never gonna let you down\n"+
+                                        "... *You turn the music off*\n"
+            };
+            Item datastick = new Item(105, "Datastick", "It's a basic data stick, what could be on it? ", 0);
             Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say 'm'lady'.", 5, 1);
             Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds. ", true);
@@ -51,6 +63,8 @@ namespace Uppgift3
 
             smallStreet.AddItem(ChangeToLegendary(armor));
             smallStreet.AddItem(ChangeToLegendary(axe));
+            club.AddItem(datapad);
+            smallStreet.AddItem(datastick);
             squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(SpawnBoss(bouncer));
 

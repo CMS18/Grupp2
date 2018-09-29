@@ -53,13 +53,28 @@ namespace Uppgift3
         {
             return inventory.GetItems().Find(i => i.Name.ToUpper() == item);
         }
-        public static Item Use(this Item item, Item targetItem)
+        public static bool Use(this Item item, Item targetItem)
         {
-            if(item.ID == targetItem.ID)
+            bool isADoor = true;
+            Door door = null;
+            try
+            {
+                door = (Door)targetItem;
+            } catch(Exception e)
+            {
+                isADoor = false;
+            }
+            if (item.ID == targetItem.ID)
+            {
                 targetItem.Change();
-            return targetItem;
+                if (isADoor)
+                {
+                    door.Locked = false;
+                }
+                return true;
+            }
+            return false;
         }
-
         public static void Rules()
         {
             string rules = @"

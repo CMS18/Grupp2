@@ -55,6 +55,7 @@ namespace Uppgift3
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
+                Console.Clear();
                 Console.WriteLine();
                 List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
@@ -162,17 +163,16 @@ namespace Uppgift3
                         Console.WriteLine("-----------------------------------");
                         if (player.GetItems().Count == 0)
                         {
-                            Console.Write("Empty");
+                            Console.WriteLine("Empty");
                         }
                         else
                         {
                             foreach (Item i in player.GetItems())
                             {
                                 PrintItem(i);
-                                Console.Write(" ");
+                                Console.WriteLine();
                             }
                         }
-                        Console.WriteLine();
                         Console.WriteLine("-----------------------------------");
                     }
                 }
@@ -211,8 +211,14 @@ namespace Uppgift3
                     }
                     else
                     {
-                        target = item.Use(target);
-                        Console.WriteLine(target.Description);
+                        if (item.Use(target))
+                        {
+                            Console.WriteLine(target.Description);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No! That wouldn't work. ");
+                        }
                     }
                 }
                 else
@@ -332,7 +338,7 @@ namespace Uppgift3
             Console.Clear();
             Console.Write("What is your name Adventurer? ");
             string adventurerName = Console.ReadLine();
-            Console.WriteLine($"Give a short description of yourself, {adventurerName}");
+            Console.Write($"Give a short description of yourself, {adventurerName}: ");
             string adventurerDescription = Console.ReadLine();
             player = new Player(adventurerName, adventurerDescription, "");
             Play();         
