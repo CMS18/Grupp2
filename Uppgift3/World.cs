@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Console = Colorful.Console;
 
 namespace Uppgift3
 {
@@ -20,8 +21,8 @@ namespace Uppgift3
             Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
             Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. There's steam coming from a manhole in the middle the of road. ");
             Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
-            Room square = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
-            Room club = new Room("Puzzles", "It's a club called puzzles. But why is it called puzzles...? Maybe that's the puzzle..");
+            Room square = new Room("Town square", "This is the town square. ");
+            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n");
 
             // Exits
             alleyway.North = smallStreet;      //Move to street
@@ -45,7 +46,8 @@ namespace Uppgift3
 
             Item datapad = new Item(105, "Datapad", "It's one of the newer models, someone must have dropped it. ", 2)
             {
-                ChangedDescription = "*Some RETRO music is playing*\n"+
+                
+            ChangedDescription = "*Some RETRO music is playing*\n"+
                                         "We're no strangers to love\n"+
                                         "You know the rules and so do I\n" +
                                         "You wouldn't get this from any other guy\n" +
@@ -55,6 +57,7 @@ namespace Uppgift3
                                         "Never gonna let you down\n"+
                                         "... *You turn the music off*\n"
             };
+
             Item datastick = new Item(105, "Datastick", "It's a basic data stick, what could be on it? ", 0);
             Weapon railgun = new Weapon(2, "Railgun", "This is not a tool to chop things with.", 5, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say \"m'lady\".", 5, 1);

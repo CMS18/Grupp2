@@ -14,6 +14,10 @@ namespace Uppgift3
 
         Room currentRoom;
         Player player;
+        int r = 225;
+        int g = 255;
+        int b = 250;
+
         string[] allDirections = {"NORTH", "SOUTH", "WEST", "EAST"};
         string[] exitMessages = {
             "Go ahead and leave, see if I care",
@@ -278,6 +282,7 @@ namespace Uppgift3
         {
             Console.Write(npc.Name.ToUpper(), npc.Elite ? Color.Yellow : Color.Crimson);
         }
+
         //TODO: Add same thing for creatures
         private void RoomDetails()
         {
