@@ -21,7 +21,7 @@ namespace Uppgift3
             "Coward!",
             "Just leave. When you come back I will be waiting with a Hyperflux Railgun 2700",
             "If I were your teacher, I'd deathmatch ya in a minute", //This special, modally marked form of be is used only for an unreal hypothetical. It is a relic of the Old English past subjunctive, and it was once used for far more than we use it today. Nice one :P
-            "There can only be one king, and apparently it's not you!",
+            "There can be only one king, and apparently it's not you!",
             "Rest in pieces!"
         };
 
@@ -35,6 +35,7 @@ namespace Uppgift3
             string input;
             Item item = null;
 
+            Console.WriteLine();
             RoomDetails();
             // THE GAME LOOP
             do
@@ -51,11 +52,11 @@ namespace Uppgift3
                         case "YES": currentRoom.TutorialFinish = false; break;
                         default: ExitGame(); break;
                     }
-                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name +". ");   //TODO: player.getName or something //DONE: Line 193 in method createPlayer()
+                    System.Console.WriteLine("\nWelcome, to the real world " +player.Name +". ");
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
-                //Console.Clear();
+                Console.Clear();
                 Console.WriteLine();
                 List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 if(string.IsNullOrEmpty(input))
@@ -132,6 +133,10 @@ namespace Uppgift3
                                     Console.Write("You picked up a ");
                                     PrintItem(item);
                                     Console.WriteLine(". ");                                        
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No. You can't pick up that, whatever that is... ");
                                 }
                             }
                         }
@@ -276,7 +281,7 @@ namespace Uppgift3
         //TODO: Add same thing for creatures
         private void RoomDetails()
         {
-            Console.WriteLine(currentRoom.Title + "\n" + currentRoom.Description);
+            Console.Write(currentRoom.Title + "\n" + currentRoom.Description);
             foreach(var item in currentRoom.GetItems())
             {
                 Console.Write("You see a ");
@@ -289,8 +294,7 @@ namespace Uppgift3
                 PrintCreature(npc);
                 Console.Write(" here. ");
             }
-            if (currentRoom.GetItems().Count > 0 && currentRoom.GetCreatures().Count > 0 )
-                Console.WriteLine();
+            Console.WriteLine();
         }
         //TODO: print invalid command?
         private void LookAt(string input)
@@ -298,9 +302,9 @@ namespace Uppgift3
             if (allDirections.Contains(input))
             {
                 if (currentRoom.Look(input) != null)
-                    Console.WriteLine("You look to the " + input + ". " + currentRoom.Look(input).Description);
+                    Console.Write("You look to the " + input + ". " + currentRoom.Look(input).Description);
                 else
-                    Console.WriteLine("You see nothing of interest there! ");
+                    Console.Write("You look to the " + input + ". You see nothing of interest there! ");
             }
             else
             {
@@ -351,10 +355,11 @@ namespace Uppgift3
                     PrintItem(door);
                     if (door.Locked == true)
                     {
-                        Console.WriteLine("It seems to be locked. ");
+                        Console.WriteLine(" It seems to be locked. ");
                     }
                     else
                     {
+                        Console.WriteLine(" You open it and enter. ");
                         currentRoom = peekRoom;
                     }
                     Console.WriteLine();

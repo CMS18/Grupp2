@@ -112,6 +112,7 @@ namespace Uppgift3
                                 Exit
                                 Commands
                                 Rules
+                                Inventory
 
                                 Figure out yourself how to use them, adventurer!";
             new Game().Formatting(commands);
