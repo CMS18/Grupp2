@@ -355,7 +355,7 @@ namespace Uppgift3
                     PrintItem(door);
                     if (door.Locked == true)
                     {
-                        Console.WriteLine(" It seems to be locked. ");
+                        Console.WriteLine(". It seems to be locked. ");
                     }
                     else
                     {
@@ -379,6 +379,7 @@ namespace Uppgift3
             Console.Write($"Give a short description of yourself, {adventurerName}: ");
             string adventurerDescription = Console.ReadLine();
             player = new Player(adventurerName, adventurerDescription, "");
+            Console.Clear();
             Play();         
         }
         public void Formatting(string text)

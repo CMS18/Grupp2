@@ -56,13 +56,13 @@ namespace Uppgift3
                                         "... *You turn the music off*\n"
             };
             Item datastick = new Item(105, "Datastick", "It's a basic data stick, what could be on it? ", 0);
-            Weapon axe = new Weapon(2, "Axe", "Tool to chop things.", 5, 25);
-            Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say 'm'lady'.", 5, 1);
-            Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds. ", true);
+            Weapon railgun = new Weapon(2, "Railgun", "This is not a tool to chop things with.", 5, 25);
+            Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say \"m'lady\".", 5, 1);
+            Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds! ", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
 
             smallStreet.AddItem(ChangeToLegendary(armor));
-            smallStreet.AddItem(ChangeToLegendary(axe));
+            smallStreet.AddItem(ChangeToLegendary(railgun));
             club.AddItem(datapad);
             smallStreet.AddItem(datastick);
             squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
