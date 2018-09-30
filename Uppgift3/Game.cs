@@ -62,7 +62,6 @@ namespace Uppgift3
                 if(string.IsNullOrEmpty(input))
                 {
                     Console.WriteLine("Write something, dude!");
-                    Console.ReadLine();
                 }
                 else 
                 switch (inputs[0])
@@ -209,6 +208,7 @@ namespace Uppgift3
                         break;
                     }
                     default:
+                            Console.WriteLine("English mudafada. Do you speak it!? Type RULES or COMMANDS for help. ");
                             break;
                         
                 }
