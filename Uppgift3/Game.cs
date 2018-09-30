@@ -382,7 +382,7 @@ namespace Uppgift3
             Console.Write("What is your name Adventurer? ");
             string adventurerName = Console.ReadLine();
             if (string.IsNullOrEmpty(adventurerName))
-                adventurerName = "Player";
+                adventurerName = "noob";
             Console.Write($"Give a short description of yourself, {adventurerName}: ");
             string adventurerDescription = Console.ReadLine();
             if (string.IsNullOrEmpty(adventurerDescription))
