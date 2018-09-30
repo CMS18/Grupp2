@@ -108,6 +108,7 @@ namespace Uppgift3
                                 Get / Pickup
                                 Drop
                                 Use
+                                Inventory
                                 Exit
                                 Commands
                                 Rules

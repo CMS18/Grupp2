@@ -55,57 +55,73 @@ namespace Uppgift3
                 }
                 Console.WriteLine();
                 input = Console.ReadLine().ToUpper();
-                Console.Clear();
+                //Console.Clear();
                 Console.WriteLine();
                 List<string> inputs = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-                if (!string.IsNullOrWhiteSpace(input))
+                if(string.IsNullOrEmpty(input))
                 {
-                    if (inputs[0] == "EXIT")
+                    Console.WriteLine("Write something, dude!");
+                    Console.ReadLine();
+                }
+                else 
+                switch (inputs[0])
+                {
+                    case "EXIT":
+                        {
+                            ExitGame();
+                                break;
+                        }
+                    case "MOVE":
+                    case "GO":
                     {
-                        ExitGame();
-                    }
-                    else if (inputs[0] == "MOVE" || inputs[0] == "GO")
-                    {
-                        if (allDirections.Contains(inputs[1]))
+                        if (inputs.Count <= 1)
+                        Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                        else if (allDirections.Contains(inputs[1]))
                         {
                             MoveTo(inputs[1]);
-                            RoomDetails();
-                        }
-                        else
-                            Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                            RoomDetails();                                   
+                        }                        
+                        break;
                     }
                     // NORTH, SOUTH etc...
-                    else if (allDirections.Contains(input))
+                    case "NORTH":
+                    case "EAST":
+                    case "SOUTH":
+                    case "WEST":
                     {
                         if (inputs.Count == 1)
                         {
                             MoveTo(input);
-                            RoomDetails();
+                            RoomDetails();                                
                         }
                         else
                             Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                        break;
                     }
-                    else if (inputs[0] == "LOOK" || inputs[0] == "EXAMINE")
+                    case "LOOK":
+                    case "EXAMINE":
+                            
                     {
                         if (inputs.Count == 1)
                         {
-                            RoomDetails();
+                            RoomDetails();                                
                         }
                         else
                         {
                             inputs.RemoveAt(0);
                             string fullName = string.Join(" ", inputs);
-                            LookAt(fullName);
+                            LookAt(fullName);                                
                         }
+                        break;
                     }
-                    else if (inputs[0] == "GET" || inputs[0] == "PICKUP")
+                    case "GET":
+                    case "PICKUP":
                     {
                         if (inputs.Count > 1)
                         {
                             inputs.RemoveAt(0);
                             string fullItemName = string.Join(" ", inputs);
-
+                                
                             if (currentRoom.GetItems() != null)
                             {
                                 item = currentRoom.Pickup(fullItemName);
@@ -115,12 +131,15 @@ namespace Uppgift3
                                     player.AddItem(item);
                                     Console.Write("You picked up a ");
                                     PrintItem(item);
-                                    Console.WriteLine(". ");
+                                    Console.WriteLine(". ");                                        
                                 }
                             }
                         }
+                        else
+                        Console.WriteLine("Get / Pick up what?");                                
+                        break;
                     }
-                    else if (inputs[0] == "DROP")
+                    case "DROP":
                     {
                         if (inputs.Count > 1)
                         {
@@ -140,23 +159,31 @@ namespace Uppgift3
                                 }
                             }
                         }
+                        else
+                        Console.WriteLine("Drop what?");
+                        break;
                     }
-                    else if (inputs[0] == "USE")
+                    case "USE":
                     {
                         if (inputs.Count > 1)
                         {
-                            UseItem(inputs);
+                            UseItem(inputs);                               
                         }
+                        else
+                        Console.WriteLine("Use what?");
+                        break;
                     }
-                    else if (inputs[0] == "COMMANDS")
+                    case "COMMANDS":
                     {
                         RulesAndCommands.Commands();
+                            break;
                     }
-                    else if (inputs[0] == "RULES")
+                    case "RULES":
                     {
                         RulesAndCommands.Rules();
+                            break;
                     }
-                    else if (inputs[0] == "INVENTORY")
+                    case "INVENTORY":
                     {
                         Console.WriteLine("You look through your pockets. ");
                         Console.WriteLine("INVENTORY");
@@ -174,8 +201,14 @@ namespace Uppgift3
                             }
                         }
                         Console.WriteLine("-----------------------------------");
+                        break;
                     }
+                    default:
+                            break;
+                        
                 }
+                
+                
             } while (playing);
         }
 
