@@ -22,7 +22,7 @@ namespace Uppgift3
             Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \n There's steam coming from a manhole in the middle the of road. ");
             Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room square = new Room("Town square", "This is the town square. ");
-            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n there's some leftover dollar bills on the floor which explains what kind of a club this is. \n");
+            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n There are some leftover dollar bills on the floor which explains what kind of a club this is. \n");
 
             // Exits
             alleyway.North = smallStreet;              //Move to street
@@ -64,6 +64,8 @@ namespace Uppgift3
             Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds! ", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
             Weapon knife = new Weapon(3, "Knife", "You call that a knife? THIS is a knife. ", 5, 1);
+            Npc Bartender = new Npc(33, "Bartender","The occupied bartender doesn't notice you staring. ", false);
+            Npc Dancers = new Npc(32, "Dancers", "The dancers are moving effortlessly to the music, but they don't seem to enjoy themselves. ", false);
 
             smallStreet.AddItem(ChangeToLegendary(armor));
             smallStreet.AddItem(ChangeToLegendary(railgun));
