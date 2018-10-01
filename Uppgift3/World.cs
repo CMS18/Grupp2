@@ -22,7 +22,7 @@ namespace Uppgift3
             Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \n There's steam coming from a manhole in the middle the of road. ");
             Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room square = new Room("Town square", "This is the town square. ");
-            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n there's some leftover dollar bills on the ground which explains what kind of a club this is. \n");
+            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n there's some leftover dollar bills on the floor which explains what kind of a club this is. \n");
 
             // Exits
             alleyway.North = smallStreet;              //Move to street
