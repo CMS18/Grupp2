@@ -59,6 +59,7 @@ namespace Uppgift3
                     System.Console.WriteLine("\nWelcome, to the real world " +player.Name +". ");
                 }
                 Console.WriteLine();
+                Console.Write("> ", Color.DeepPink);
                 input = Console.ReadLine().ToUpper();
                 Console.Clear();
                 Console.WriteLine();
@@ -413,6 +414,7 @@ namespace Uppgift3
                                 3. Are you a little dumb? L2P and RTFM
                                 4. Exit";
                 Formatting(text);
+                Console.Write("> ", Color.DeepPink);
                 string input = Console.ReadLine();
                 switch (input)
                 {
@@ -431,6 +433,7 @@ namespace Uppgift3
                     case "4":
                         Console.Clear();
                         Console.WriteLine("Thank you for looking at the menu! Bye Bye!");
+                        ExitGame();
                         Console.ReadLine();
                         Environment.Exit(0);
                         break;
