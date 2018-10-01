@@ -19,17 +19,17 @@ namespace Uppgift3
         {
             // Rooms to use
             Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
-            Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. There's steam coming from a manhole in the middle the of road. ");
+            Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \n There's steam coming from a manhole in the middle the of road. ");
             Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room square = new Room("Town square", "This is the town square. ");
-            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n");
+            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n there's some leftover dollar bills on the ground which explains what kind of a club this is. \n");
 
             // Exits
-            alleyway.North = smallStreet;      //Move to street
+            alleyway.North = smallStreet;              //Move to street
             squareTutorial.South = smallStreet;        //Move to street
-            smallStreet.South = alleyway;      //Move to alleyway
+            smallStreet.South = alleyway;              //Move to alleyway
             smallStreet.North = squareTutorial;        //Move to hallway
-            smallStreet.East = club;           //Go to the club
+            smallStreet.East = club;                   //Go to the club
             club.West = smallStreet;
 
             Door clubDoor = new Door(99, "Club door", "The door is made of thick metal of some sort, you would need a keycard to open it. ", true)
