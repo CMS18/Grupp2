@@ -20,15 +20,14 @@ namespace Uppgift3
             // Rooms to use
             Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
             Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \n There's steam coming from a manhole in the middle the of road. ");
-            Room squareTutorial = new Room("Town square", "This is the town square. Add something more. Add something more. Add something more. ");
             Room square = new Room("Town square", "This is the town square. ");
             Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n There are some leftover dollar bills on the floor which explains what kind of a club this is. \n");
 
             // Exits
             alleyway.North = smallStreet;              //Move to street
-            squareTutorial.South = smallStreet;        //Move to street
+            square.South = smallStreet;                //Move to street
             smallStreet.South = alleyway;              //Move to alleyway
-            smallStreet.North = squareTutorial;        //Move to hallway
+            smallStreet.North = square;                //Move to hallway
             smallStreet.East = club;                   //Go to the club
             club.West = smallStreet;
 
@@ -41,7 +40,7 @@ namespace Uppgift3
             alleyway.AddItem(new Item(99, "Dirty keycard", "It's a plastic keycard, the colors all faded but on it you notice the washed out remains of a word; zzl. ", 0));
             smallStreet.AddItem(new Item(98, "Blue keycard", "It's a plastic keycard, it's blue with no text on it. ", 0));
 
-            squareTutorial.TutorialFinish = true;
+            square.TutorialFinish = true;
 
 
             Item datapad = new Item(105, "Datapad", "It's one of the newer models, someone must have dropped it. ", 2)
@@ -59,7 +58,7 @@ namespace Uppgift3
             };
 
             Item datastick = new Item(105, "Datastick", "It's a basic data stick, what could be on it? ", 0);
-            Weapon railgun = new Weapon(2, "Railgun", "The classic instagib rifle", 100, 25);
+            Weapon railgun = new Weapon(2, "Railgun", "The classic instagib rifle.", 100, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say \"m'lady\".", 5, 1);
             Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds! ", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
@@ -74,7 +73,7 @@ namespace Uppgift3
             club.AddCreature(bartender);
             club.AddCreature(dancers);
             smallStreet.AddItem(datastick);
-            squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
+            square.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(SpawnBoss(bouncer));
 
             Start = square;
