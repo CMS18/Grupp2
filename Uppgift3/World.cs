@@ -64,13 +64,15 @@ namespace Uppgift3
             Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds! ", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
             Weapon knife = new Weapon(3, "Knife", "You call that a knife? THIS is a knife. ", 5, 1);
-            Npc Bartender = new Npc(33, "Bartender","The occupied bartender doesn't notice you staring. ", false);
-            Npc Dancers = new Npc(32, "Dancers", "The dancers are moving effortlessly to the music, but they don't seem to enjoy themselves. ", false);
+            Npc bartender = new Npc(33, "Bartender","The occupied bartender doesn't notice you staring. ", false);
+            Npc dancers = new Npc(32, "Dancers", "The dancers are moving effortlessly to the music, but they don't seem to enjoy themselves. ", false);
 
             smallStreet.AddItem(ChangeToLegendary(armor));
             smallStreet.AddItem(ChangeToLegendary(railgun));
             club.AddItem(datapad);
             club.AddItem(knife);
+            club.AddCreature(bartender);
+            club.AddCreature(dancers):
             smallStreet.AddItem(datastick);
             squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(SpawnBoss(bouncer));
