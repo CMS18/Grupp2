@@ -20,7 +20,7 @@ namespace Uppgift3
             // Rooms to use
             Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
             Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \n There's steam coming from a manhole in the middle the of road. ");
-            Room square = new Room("Town square", "This is the town square. ");
+            Room square = new Room("Town square", "This is the town square. Did you expect something else?");
             Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n There are some leftover dollar bills on the floor which explains what kind of a club this is. \n");
 
             // Exits
@@ -64,7 +64,7 @@ namespace Uppgift3
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
             Weapon knife = new Weapon(3, "Knife", "You call that a knife? THIS is a knife. ", 5, 1);
             Npc bartender = new Npc(33, "Bartender","The occupied bartender doesn't notice you staring. ", false);
-            Npc dancers = new Npc(32, "Dancers", "The dancers are moving effortlessly to the music, but they don't seem to enjoy themselves. ", false);
+            Npc dancers = new Npc(32, "Dancer", "The dancer is moving effortlessly to the music, but she doesn't seem to enjoy herself. ", false);
 
             smallStreet.AddItem(ChangeToLegendary(armor));
             smallStreet.AddItem(ChangeToLegendary(railgun));
