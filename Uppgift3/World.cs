@@ -55,7 +55,7 @@ namespace Uppgift3
                                         "Gotta make you understand\n"+
                                         "Never gonna give you up\n"+
                                         "Never gonna let you down\n"+
-                                        "... *You turn the music off*\n"
+                                        "... *You turn the music off*"
             };
 
             Item datastick = new Item(105, "Datastick", "It's a basic data stick, what could be on it? ", 0);

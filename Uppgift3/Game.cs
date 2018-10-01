@@ -47,7 +47,7 @@ namespace Uppgift3
                 if (currentRoom.TutorialFinish)
                 {
                     Console.WriteLine("\nWell played... almost! This was just the tutorial stupid.");
-                    Console.Write("Do you want to continue with the REAL game? ");
+                    Console.Write($"Do you want to continue with the REAL game {player.Name}? ");
                     input = Console.ReadLine().ToUpper();
 
                     switch (input)
@@ -79,7 +79,7 @@ namespace Uppgift3
                     case "GO":
                     {
                         if (inputs.Count <= 1)
-                        Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                        Console.WriteLine($"That's not a valid command {player.Name}! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
                         else if (allDirections.Contains(inputs[1]))
                         {
                             MoveTo(inputs[1]);
@@ -99,7 +99,7 @@ namespace Uppgift3
                             RoomDetails();                                
                         }
                         else
-                            Console.WriteLine("That's not a valid command! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
+                            Console.WriteLine($"That's not a valid command {player.Name}! Use DIRECTIONS: NORTH, EAST, SOUTH, WEST.");
                         break;
                     }
                     case "LOOK":
@@ -139,7 +139,7 @@ namespace Uppgift3
                                 }
                                 else
                                 {
-                                    Console.WriteLine("No. You can't pick up that, whatever that is... ");
+                                    Console.WriteLine("No. You can't pick that up, whatever that is... ");
                                 }
                             }
                         }
@@ -212,7 +212,7 @@ namespace Uppgift3
                         break;
                     }
                     default:
-                            Console.WriteLine("English mudafada. Do you speak it!? Type RULES or COMMANDS for help. ");
+                            Console.WriteLine("Commands mudafada. Do you type it!? Type RULES or COMMANDS for help, you noob. ");
                             break;
                         
                 }
