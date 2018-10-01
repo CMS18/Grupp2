@@ -72,7 +72,7 @@ namespace Uppgift3
             club.AddItem(datapad);
             club.AddItem(knife);
             club.AddCreature(bartender);
-            club.AddCreature(dancers):
+            club.AddCreature(dancers);
             smallStreet.AddItem(datastick);
             squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(SpawnBoss(bouncer));
