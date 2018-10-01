@@ -59,14 +59,16 @@ namespace Uppgift3
             };
 
             Item datastick = new Item(105, "Datastick", "It's a basic data stick, what could be on it? ", 0);
-            Weapon railgun = new Weapon(2, "Railgun", "This is not a tool to chop things with.", 5, 25);
+            Weapon railgun = new Weapon(2, "Railgun", "The classic instagib rifle", 100, 25);
             Armor armor = new Armor(12, "Hat", "It's a fedora. You feel the sudden urge to say \"m'lady\".", 5, 1);
             Npc diamondUnicorn = new Npc(10, "Diamond Unicorn", "Oh my god! It's Butt Stallion! It's the infamous unicorn made out of diamonds! ", true);
             Npc bouncer = new Npc(52, "Bouncer", "Wow, that's a big guy. He looks like a Brad.", false);
+            Weapon knife = new Weapon(3, "Knife", "You call that a knife? THIS is a knife. ", 5, 1);
 
             smallStreet.AddItem(ChangeToLegendary(armor));
             smallStreet.AddItem(ChangeToLegendary(railgun));
             club.AddItem(datapad);
+            club.AddItem(knife);
             smallStreet.AddItem(datastick);
             squareTutorial.AddCreature(SpawnBoss(diamondUnicorn));
             smallStreet.AddCreature(SpawnBoss(bouncer));
