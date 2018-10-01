@@ -432,7 +432,7 @@ namespace Uppgift3
 
                     case "4":
                         Console.Clear();
-                        Console.WriteLine("Thank you for looking at the menu! Bye Bye!");
+                        Console.WriteLine("I knew you didn't have it in you. Peasant.");
                         ExitGame();
                         Console.ReadLine();
                         Environment.Exit(0);
