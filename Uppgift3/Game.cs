@@ -149,30 +149,11 @@ namespace Uppgift3
                         break;
                     }
                     case "DROP":
-                    {
-                        if (inputs.Count > 1)
-                        {
-                            inputs.RemoveAt(0);
-                            string wholeItemName = string.Join(" ", inputs);
-
-                            if (player.GetItems() != null)
                             {
-                                item = player.Drop(wholeItemName);
-                                if (item != null)
-                                {
-                                    player.RemoveItem(item);
-                                    currentRoom.AddItem(item);
-                                    Console.Write("You dropped a ");
-                                    PrintItem(item);
-                                    Console.WriteLine(". ");
-                                }
+                                item = DropItems(item, inputs);
+                                break;
                             }
-                        }
-                        else
-                        Console.WriteLine("Drop what?");
-                        break;
-                    }
-                    case "USE":
+                        case "USE":
                     {
                         if (inputs.Count > 1)
                         {
@@ -220,6 +201,31 @@ namespace Uppgift3
                 
                 
             } while (playing);
+        }
+
+        private Item DropItems(Item item, List<string> inputs)
+        {
+            if (inputs.Count > 1)
+            {
+                inputs.RemoveAt(0);
+                string wholeItemName = string.Join(" ", inputs);
+
+                if (player.GetItems() != null)
+                {
+                    item = player.Drop(wholeItemName);
+                    if (item != null)
+                    {
+                        player.RemoveItem(item);
+                        currentRoom.AddItem(item);
+                        Console.Write("You dropped a ");
+                        PrintItem(item);
+                        Console.WriteLine(". ");
+                    }
+                }
+            }
+            else
+                Console.WriteLine("Drop what?");
+            return item;
         }
 
         private void UseItem(List<string> inputs)

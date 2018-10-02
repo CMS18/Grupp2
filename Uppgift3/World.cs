@@ -19,9 +19,9 @@ namespace Uppgift3
         {
             // Rooms to use
             Room alleyway = new Room("Dimmed alleyway", "The dingy alleyway reeks of the sour relics from a thousand take-away meals. "); 
-            Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \n There's steam coming from a manhole in the middle the of road. ");
+            Room smallStreet = new Room("Small Street", "The street is crowded with sketchy looking people. \nThere's steam coming from a manhole in the middle the of road. ");
             Room square = new Room("Town square", "This is the town square. Did you expect something else?");
-            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \n There are some leftover dollar bills on the floor which explains what kind of a club this is. \n");
+            Room club = new Room("Puzzles", "It's a club called Puzzles. But why is it called Puzzles...? Maybe that's the puzzle.. \nThere are some leftover dollar bills on the floor which explains what kind of a club this is. \n");
 
             // Exits
             alleyway.North = smallStreet;              //Move to street
